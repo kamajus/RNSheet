@@ -1,4 +1,3 @@
-/* eslint-disable curly */
 import React from 'react';
 import {
   Linking,
@@ -9,7 +8,7 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-import {SheetManager} from 'react-native-actions-sheet';
+import { SheetManager } from 'react-native-actions-sheet';
 
 const MainScreen = () => {
   const examples: {
@@ -72,7 +71,7 @@ const MainScreen = () => {
           console.log('User will star on github?', result);
           if (result) {
             Linking.openURL(
-              'https://github.com/ammarahm-ed/react-native-actions-sheet',
+              'https://github.com/ammarahm-ed/react-native-actions-sheet'
             );
           }
         });
@@ -146,7 +145,8 @@ const MainScreen = () => {
             fontWeight: '100',
             fontSize: 30,
             alignSelf: 'center',
-          }}>
+          }}
+        >
           Examples
         </Text>
 
@@ -156,14 +156,16 @@ const MainScreen = () => {
             flex: 1,
             marginTop: 20,
             paddingHorizontal: 12,
-          }}>
+          }}
+        >
           {examples.map(item => (
             <TouchableOpacity
               key={item.title}
               onPress={() => {
                 item.onOpen();
               }}
-              style={styles.btn}>
+              style={styles.btn}
+            >
               <Text style={styles.btnTitle}>{item.title}</Text>
             </TouchableOpacity>
           ))}
@@ -186,7 +188,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     elevation: 5,
     shadowColor: 'black',
-    shadowOffset: {width: 0.3 * 4, height: 0.5 * 4},
+    shadowOffset: { width: 0.3 * 4, height: 0.5 * 4 },
     shadowOpacity: 0.2,
     shadowRadius: 0.7 * 4,
     width: '100%',

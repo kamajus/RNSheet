@@ -1,8 +1,8 @@
-import { NextPage } from "next";
-import { AppProps } from "next/app";
-import "nextra-theme-docs/style.css";
-import "../styles/globals.css";
-import { ReactElement, ReactNode } from "react";
+import { NextPage } from 'next';
+import { AppProps } from 'next/app';
+import 'nextra-theme-docs/style.css';
+import '../styles/globals.css';
+import { ReactElement, ReactNode } from 'react';
 
 // https://nextjs.org/docs/basic-features/layouts#with-typescript
 
@@ -15,7 +15,7 @@ type AppPropsWithLayout = AppProps & {
 };
 
 export default function Nextra({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.getLayout ?? ((page) => page);
+  const getLayout = Component.getLayout ?? (page => page);
 
   return getLayout(<Component {...pageProps} />);
 }

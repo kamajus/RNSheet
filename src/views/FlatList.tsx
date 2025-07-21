@@ -1,8 +1,4 @@
-/* eslint-disable curly */
-import React, {
-  RefObject,
-  useImperativeHandle
-} from 'react';
+import React, { RefObject, useImperativeHandle } from 'react';
 import { FlatListProps, Platform, FlatList as RNFlatList } from 'react-native';
 import {
   NativeViewGestureHandlerProps,
@@ -22,7 +18,7 @@ type Props<T = any> = FlatListProps<T> &
 
 function $FlatList<T>(
   props: Props<T>,
-  ref: React.ForwardedRef<RefObject<RNFlatList>>,
+  ref: React.ForwardedRef<RefObject<RNFlatList>>
 ) {
   const handlers = useScrollHandlers<RNFlatList>({
     hasRefreshControl: !!props.refreshControl,
@@ -51,5 +47,5 @@ function $FlatList<T>(
 }
 
 export const FlatList = React.forwardRef(
-  $FlatList,
+  $FlatList
 ) as unknown as typeof RNFlatList;

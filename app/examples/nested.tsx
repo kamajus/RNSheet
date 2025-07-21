@@ -1,7 +1,7 @@
 import React from 'react';
-import {Text} from 'react-native';
-import ActionSheet, {SheetManager} from 'react-native-actions-sheet';
-import {Button} from '../components/button';
+import { Text } from 'react-native';
+import ActionSheet, { SheetManager } from 'react-native-actions-sheet';
+import { Button } from '../components/button';
 
 function NestedSheet() {
   return (
@@ -11,14 +11,16 @@ function NestedSheet() {
         height: 400,
         alignItems: 'center',
         justifyContent: 'center',
-      }}>
+      }}
+    >
       <Text
         style={{
           color: 'black',
           fontSize: 30,
-          textAlign:'center',
-          marginBottom: 10
-        }}>
+          textAlign: 'center',
+          marginBottom: 10,
+        }}
+      >
         Hello!
       </Text>
 

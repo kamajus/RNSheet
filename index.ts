@@ -20,7 +20,7 @@ export {
   Sheets,
   ActionSheetRef,
 } from './src/types';
-export {useScrollHandlers} from './src/hooks/use-scroll-handlers';
+export { useScrollHandlers } from './src/hooks/use-scroll-handlers';
 export {
   useSheetRouter,
   useSheetRouteParams,
@@ -29,6 +29,6 @@ export {
   Router,
   RouteDefinition,
 } from './src/hooks/use-router';
-export {ScrollView} from './src/views/ScrollView';
-export {FlatList} from './src/views/FlatList';
+export { ScrollView } from './src/views/ScrollView';
+export { FlatList } from './src/views/FlatList';
 export default ActionSheet;

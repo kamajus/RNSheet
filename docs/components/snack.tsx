@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import {useLayoutEffect} from 'react';
+import React, { useState } from 'react';
+import { useLayoutEffect } from 'react';
 import Script from 'next/script';
-import {useTheme} from 'nextra-theme-docs';
+import { useTheme } from 'nextra-theme-docs';
 
 export default function Snack() {
   const [ready, setReady] = useState(false);
-  const {theme, systemTheme} = useTheme();
+  const { theme, systemTheme } = useTheme();
   const currentTheme = theme === 'system' ? systemTheme : theme;
   useLayoutEffect(() => {
     setReady(true);

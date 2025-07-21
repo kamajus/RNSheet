@@ -1,11 +1,11 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import { Text, View } from 'react-native';
 import ActionSheet, {
   Route,
   useSheetRouteParams,
   useSheetRouter,
 } from 'react-native-actions-sheet';
-import {Button} from '../components/button';
+import { Button } from '../components/button';
 
 const RouteA = () => {
   const router = useSheetRouter('sheet-router');
@@ -17,20 +17,22 @@ const RouteA = () => {
         alignItems: 'center',
         width: '100%',
         gap: 10,
-      }}>
+      }}
+    >
       <Text
         style={{
           marginBottom: 10,
           color: 'black',
           fontSize: 20,
           textAlign: 'center',
-        }}>
+        }}
+      >
         Route A
       </Text>
       <Button
         title="Go to Route B"
         onPress={() => {
-          router.navigate('route-b', {param: 'value'});
+          router.navigate('route-b', { param: 'value' });
         }}
       />
     </View>
@@ -50,14 +52,16 @@ const RouteB = () => {
         alignItems: 'center',
         width: '100%',
         gap: 10,
-      }}>
+      }}
+    >
       <Text
         style={{
           marginBottom: 10,
           color: 'black',
           fontSize: 20,
           textAlign: 'center',
-        }}>
+        }}
+      >
         Route B
       </Text>
       <Button

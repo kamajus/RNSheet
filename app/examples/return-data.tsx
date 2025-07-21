@@ -1,7 +1,7 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import ActionSheet, {useSheetRef} from 'react-native-actions-sheet';
-import {Button} from '../components/button';
+import { Text, View } from 'react-native';
+import ActionSheet, { useSheetRef } from 'react-native-actions-sheet';
+import { Button } from '../components/button';
 
 function ReturnData() {
   const ref = useSheetRef('return-data');
@@ -12,22 +12,25 @@ function ReturnData() {
         width: 150,
       }}
       gestureEnabled
-      drawUnderStatusBar>
+      drawUnderStatusBar
+    >
       <View
         style={{
           alignItems: 'center',
           justifyContent: 'center',
           gap: 10,
           paddingHorizontal: 12,
-            paddingTop: 20
-        }}>
+          paddingTop: 20,
+        }}
+      >
         <Text
           style={{
             color: 'black',
             fontSize: 30,
-            textAlign:'center',
-            marginBottom: 10
-          }}>
+            textAlign: 'center',
+            marginBottom: 10,
+          }}
+        >
           Are you sure you want to star react-native-actions-sheet repo on
           Github?
         </Text>
@@ -43,7 +46,7 @@ function ReturnData() {
             ref.current.hide(false);
           }}
           style={{
-            backgroundColor:"#a9a9a9"
+            backgroundColor: '#a9a9a9',
           }}
         />
       </View>

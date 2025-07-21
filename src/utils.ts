@@ -1,10 +1,12 @@
-import {Platform, StatusBar} from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 
 export function getDeviceHeight(
   statusBarTranslucent: boolean | undefined,
-  height: number,
+  height: number
 ): number {
-  if (Platform.OS === 'ios') return height;
+  if (Platform.OS === 'ios') {
+    return height;
+  }
 
   var currentStatusbarHeight = StatusBar.currentHeight || 0;
   var height = height + currentStatusbarHeight - 3;
@@ -18,7 +20,7 @@ export const getElevation = (elevation: number) => {
   return {
     elevation,
     shadowColor: 'black',
-    shadowOffset: {width: 0.3 * elevation, height: 0.5 * elevation},
+    shadowOffset: { width: 0.3 * elevation, height: 0.5 * elevation },
     shadowOpacity: 0.2,
     shadowRadius: 0.7 * elevation,
   };

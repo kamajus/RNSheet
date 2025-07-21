@@ -1,5 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
-
 export default {
   projectLink: 'https://github.com/ammarahm-ed/react-native-actions-sheet', // GitHub link in the navbar
   docsRepositoryBase:
@@ -11,14 +9,14 @@ export default {
   darkMode: true,
   footer: true,
   footerText: `MIT ${new Date().getFullYear()} © Ammar Ahmed.`,
-  footerEditLink: `Edit this page on GitHub`,
+  footerEditLink: 'Edit this page on GitHub',
   logo: (
     <>
       <img
         src="/logo.svg"
         width="20"
         alt="ActionSheet for React Native"
-        style={{marginRight: '10px'}}
+        style={{ marginRight: '10px' }}
       />
       <span>ActionSheet for React Native</span>
     </>

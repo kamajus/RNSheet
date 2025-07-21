@@ -1,4 +1,4 @@
-const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 const path = require('path');
 const exclusionList = require('metro-config/src/defaults/exclusionList');
 
@@ -11,7 +11,7 @@ const moduleRoot = path.resolve(__dirname, '..');
  * @type {import('metro-config').MetroConfig}
  */
 const config = {
-  watchFolders: [moduleRoot,  path.join(__dirname, '../app'),],
+  watchFolders: [moduleRoot, path.join(__dirname, '../app')],
   resolver: {
     extraNodeModules: {
       react: path.resolve(__dirname, 'node_modules/react'),
@@ -19,14 +19,13 @@ const config = {
       'react-native-actions-sheet': path.resolve(__dirname, '../'),
     },
     resolveRequest: (context, moduleName, platform) => {
-
       if (moduleName === 'react-native-safe-area-context') {
         return {
           filePath: path.resolve(
             path.join(
               __dirname,
-              'node_modules/react-native-safe-area-context/src/index.tsx',
-            ),
+              'node_modules/react-native-safe-area-context/src/index.tsx'
+            )
           ),
           type: 'sourceFile',
         };
@@ -37,8 +36,8 @@ const config = {
           filePath: path.resolve(
             path.join(
               __dirname,
-              'node_modules/react-native-gesture-handler/src/index.ts',
-            ),
+              'node_modules/react-native-gesture-handler/src/index.ts'
+            )
           ),
           type: 'sourceFile',
         };

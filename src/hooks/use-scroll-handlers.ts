@@ -1,12 +1,16 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {NativeScrollEvent, NativeSyntheticEvent, Platform} from 'react-native';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  Platform,
+} from 'react-native';
 import {
   DraggableNodeOptions,
   LayoutRect,
   useDraggableNodesContext,
   usePanGestureContext,
 } from '../context';
-import {EventHandlerSubscription} from '../eventmanager';
+import { EventHandlerSubscription } from '../eventmanager';
 
 export const ScrollState = {
   END: -1,
@@ -38,12 +42,12 @@ export function useDraggable<T>(options?: DraggableNodeOptions) {
   const gestureContext = usePanGestureContext();
   const draggableNodes = useDraggableNodesContext();
   const nodeRef = useRef<T>(null);
-  const offset = useRef({x: 0, y: 0});
+  const offset = useRef({ x: 0, y: 0 });
   const layout = useRef<LayoutRect>(InitialLayoutRect);
   useEffect(() => {
     const pushNode = () => {
       const index = draggableNodes.nodes.current?.findIndex(
-        node => node.ref === nodeRef,
+        node => node.ref === nodeRef
       );
       if (index === undefined || index === -1) {
         draggableNodes.nodes.current?.push({
@@ -57,7 +61,7 @@ export function useDraggable<T>(options?: DraggableNodeOptions) {
 
     const popNode = () => {
       const index = draggableNodes.nodes.current?.findIndex(
-        node => node.ref === nodeRef,
+        node => node.ref === nodeRef
       );
 
       if (index === undefined || index > -1) {
@@ -80,7 +84,7 @@ export function useDraggable<T>(options?: DraggableNodeOptions) {
 }
 
 /**
- * Create a custom scrollable view inside the action sheet. 
+ * Create a custom scrollable view inside the action sheet.
  * The scrollable view must implement `onScroll`, and `onLayout` props.
  * @example
  * ```tsx
@@ -92,13 +96,15 @@ export function useDraggable<T>(options?: DraggableNodeOptions) {
     {...handlers}
   >
   </ScrollableView>
-  
+
   </NativeViewGestureHandler>
  * ```
  */
 export function useScrollHandlers<T>(options?: DraggableNodeOptions) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_render, setRender] = useState(false);
-  const {nodeRef, gestureContext, offset, layout} = useDraggable<T>(options);
+
+  const { nodeRef, gestureContext, offset, layout } = useDraggable<T>(options);
   const timer = useRef<NodeJS.Timeout>();
   const subscription = useRef<EventHandlerSubscription>();
   const onMeasure = useCallback(
@@ -112,17 +118,19 @@ export function useScrollHandlers<T>(options?: DraggableNodeOptions) {
         py,
       };
     },
-    [layout],
+    [layout]
   );
 
   const measureAndLayout = React.useCallback(() => {
     clearTimeout(timer.current);
     timer.current = setTimeout(() => {
       const ref = resolveScrollRef(nodeRef);
-      if (Platform.OS == 'web') {
-        if (!ref) return;
+      if (Platform.OS === 'web') {
+        if (!ref) {
+          return;
+        }
         const rect = (ref as HTMLDivElement).getBoundingClientRect();
-        (ref as HTMLDivElement).style.overflow = "auto";
+        (ref as HTMLDivElement).style.overflow = 'auto';
         onMeasure(rect.x, rect.y, rect.width, rect.height, rect.left, rect.top);
       } else {
         ref?.measure?.(onMeasure);
@@ -131,7 +139,9 @@ export function useScrollHandlers<T>(options?: DraggableNodeOptions) {
   }, [nodeRef, onMeasure]);
 
   useEffect(() => {
-    if (Platform.OS === 'web' || !gestureContext.ref) return;
+    if (Platform.OS === 'web' || !gestureContext.ref) {
+      return;
+    }
     const interval = setInterval(() => {
       // Trigger a rerender when gestureContext gets populated.
       if (gestureContext.ref.current) {
@@ -146,7 +156,7 @@ export function useScrollHandlers<T>(options?: DraggableNodeOptions) {
       ref: nodeRef,
       simultaneousHandlers: gestureContext.ref,
       onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-        const {x, y} = event.nativeEvent.contentOffset;
+        const { x, y } = event.nativeEvent.contentOffset;
         const maxOffsetX =
           event.nativeEvent.contentSize.width - layout.current.w;
         const maxOffsetY =
@@ -165,7 +175,7 @@ export function useScrollHandlers<T>(options?: DraggableNodeOptions) {
           'onoffsetchange',
           () => {
             measureAndLayout();
-          },
+          }
         );
       },
     };

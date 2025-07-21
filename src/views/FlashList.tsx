@@ -1,4 +1,3 @@
-/* eslint-disable curly */
 import {
   FlashList as SPFlashList,
   FlashListProps,
@@ -6,9 +5,9 @@ import {
   MasonryFlashListProps,
 } from '@shopify/flash-list';
 import React from 'react';
-import {ScrollView as RNScrollView} from 'react-native';
-import {NativeViewGestureHandlerProps} from 'react-native-gesture-handler';
-import {ScrollView as SheetScrollView} from './ScrollView';
+import { ScrollView as RNScrollView } from 'react-native';
+import { NativeViewGestureHandlerProps } from 'react-native-gesture-handler';
+import { ScrollView as SheetScrollView } from './ScrollView';
 type Props<T = any> = FlashListProps<T> &
   Partial<NativeViewGestureHandlerProps> &
   React.RefAttributes<RNScrollView> & {
@@ -22,7 +21,7 @@ type Props<T = any> = FlashListProps<T> &
 
 function $FlashList<T = any>(
   props: Props<T>,
-  ref: React.ForwardedRef<SPFlashList<T>>,
+  ref: React.ForwardedRef<SPFlashList<T>>
 ) {
   return (
     <SPFlashList
@@ -35,7 +34,7 @@ function $FlashList<T = any>(
 }
 
 export const FlashList = React.forwardRef(
-  $FlashList,
+  $FlashList
 ) as unknown as typeof SPFlashList;
 
 type MasonaryProps<T = any> = MasonryFlashListProps<T> &
@@ -51,7 +50,7 @@ type MasonaryProps<T = any> = MasonryFlashListProps<T> &
 
 function $MasonaryFlashList<T = any>(
   props: MasonaryProps<T>,
-  ref: React.ForwardedRef<any>,
+  ref: React.ForwardedRef<any>
 ) {
   return (
     <SPMasonaryFlashList
@@ -64,5 +63,5 @@ function $MasonaryFlashList<T = any>(
 }
 
 export const MasonaryFlashList = React.forwardRef(
-  $MasonaryFlashList,
+  $MasonaryFlashList
 ) as unknown as typeof SPMasonaryFlashList;

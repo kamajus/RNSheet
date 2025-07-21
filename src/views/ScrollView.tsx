@@ -1,8 +1,4 @@
-/* eslint-disable curly */
-import React, {
-  RefObject,
-  useImperativeHandle
-} from 'react';
+import React, { RefObject, useImperativeHandle } from 'react';
 import {
   Platform,
   ScrollView as RNScrollView,
@@ -26,7 +22,7 @@ type Props = ScrollViewProps &
 
 function $ScrollView(
   props: Props,
-  ref: React.ForwardedRef<RefObject<RNScrollView>>,
+  ref: React.ForwardedRef<RefObject<RNScrollView>>
 ) {
   const handlers = useScrollHandlers<RNScrollView>({
     hasRefreshControl: !!props.refreshControl,
@@ -53,8 +49,6 @@ function $ScrollView(
   );
 }
 
-
-
 export const ScrollView = React.forwardRef(
-  $ScrollView,
+  $ScrollView
 ) as unknown as typeof RNScrollView;

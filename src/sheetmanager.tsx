@@ -1,12 +1,11 @@
-/* eslint-disable curly */
-import {RefObject} from 'react';
-import {actionSheetEventManager} from './eventmanager';
-import {providerRegistryStack, sheetsRegistry} from './provider';
-import {ActionSheetRef, Sheets} from './types';
+import { RefObject } from 'react';
+import { actionSheetEventManager } from './eventmanager';
+import { providerRegistryStack, sheetsRegistry } from './provider';
+import { ActionSheetRef, Sheets } from './types';
 let baseZindex = 999;
 // Array of all the ids of ActionSheets currently rendered in the app.
 const ids: string[] = [];
-const refs: {[name: string]: RefObject<ActionSheetRef>} = {};
+const refs: { [name: string]: RefObject<ActionSheetRef> } = {};
 
 /**
  * Get rendered action sheets stack
@@ -60,7 +59,7 @@ export function getZIndexFromStack(id: string, context: string) {
 }
 
 class _SheetManager {
-  context(options?: {context?: string; id?: string}) {
+  context(options?: { context?: string; id?: string }) {
     if (!options) options = {};
     if (!options?.context) {
       // If no context is provided, use to current top most context
@@ -102,7 +101,7 @@ class _SheetManager {
        * Provide `context` of the `SheetProvider` where you want to show the action sheet.
        */
       context?: string;
-    },
+    }
   ): Promise<Sheets[SheetId]['returnValue']> {
     return new Promise(resolve => {
       let currentContext = this.context({
@@ -135,7 +134,7 @@ class _SheetManager {
       actionSheetEventManager.publish(
         isRegisteredWithSheetProvider ? `show_wrap_${id}` : `show_${id}`,
         options?.payload,
-        currentContext || 'global',
+        currentContext || 'global'
       );
     });
   }
@@ -157,7 +156,7 @@ class _SheetManager {
        * Provide `context` of the `SheetProvider` to hide the action sheet.
        */
       context?: string;
-    },
+    }
   ): Promise<Sheets[SheetId]['returnValue']> {
     let currentContext = this.context({
       ...options,
@@ -189,7 +188,7 @@ class _SheetManager {
       actionSheetEventManager.publish(
         isRegisteredWithSheetProvider ? `hide_wrap_${id}` : `hide_${id}`,
         options?.payload,
-        !isRegisteredWithSheetProvider ? 'global' : currentContext,
+        !isRegisteredWithSheetProvider ? 'global' : currentContext
       );
     });
   }
@@ -209,7 +208,7 @@ class _SheetManager {
   registerRef = (
     id: string,
     context: string,
-    instance: RefObject<ActionSheetRef>,
+    instance: RefObject<ActionSheetRef>
   ) => {
     refs[`${id}:${context}`] = instance;
   };
@@ -223,7 +222,7 @@ class _SheetManager {
    */
   get = <SheetId extends keyof Sheets>(
     id: SheetId | (string & {}),
-    context?: string,
+    context?: string
   ): RefObject<ActionSheetRef<SheetId>> => {
     if (!context) {
       for (let ctx of providerRegistryStack.slice().reverse()) {

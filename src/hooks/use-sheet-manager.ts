@@ -1,7 +1,6 @@
-/* eslint-disable curly */
-import {useEffect, useState} from 'react';
-import {actionSheetEventManager} from '../eventmanager';
-import {useProviderContext} from '../provider';
+import { useEffect, useState } from 'react';
+import { actionSheetEventManager } from '../eventmanager';
+import { useProviderContext } from '../provider';
 
 const useSheetManager = ({
   id,
@@ -29,7 +28,7 @@ const useSheetManager = ({
           onContextUpdate?.();
           onBeforeShow?.(data);
           setVisible(true);
-        },
+        }
       ),
       actionSheetEventManager.subscribe(`hide_${id}`, (data: any, context) => {
         if (currentContext !== context) return;

@@ -1,7 +1,7 @@
-import React, {useCallback} from 'react';
-import {Text, View} from 'react-native';
-import ActionSheet, {ScrollView} from 'react-native-actions-sheet';
-import {TextInput} from 'react-native-gesture-handler';
+import React, { useCallback } from 'react';
+import { Text, View } from 'react-native';
+import ActionSheet, { ScrollView } from 'react-native-actions-sheet';
+import { TextInput } from 'react-native-gesture-handler';
 
 function ScrollViewSheet() {
   const vegetableNamesWithEmoji = [
@@ -51,14 +51,17 @@ function ScrollViewSheet() {
         placeholder={item}
       />
     ),
-    [],
+    []
   );
 
   return (
-    <ActionSheet gestureEnabled containerStyle={{
-      maxHeight:'100%',
-      height:'100%'
-    }}>
+    <ActionSheet
+      gestureEnabled
+      containerStyle={{
+        maxHeight: '100%',
+        height: '100%',
+      }}
+    >
       <View
         style={{
           paddingHorizontal: 12,
@@ -66,20 +69,23 @@ function ScrollViewSheet() {
           paddingTop: 20,
           gap: 10,
           width: '100%',
-          height:'100%'
-        }}>
+          height: '100%',
+        }}
+      >
         <ScrollView
           style={{
             width: '100%',
             flexShrink: 1,
-          }}>
+          }}
+        >
           <Text
             style={{
               color: 'black',
               fontSize: 30,
               width: '100%',
               paddingBottom: 10,
-            }}>
+            }}
+          >
             Vegetables
           </Text>
 

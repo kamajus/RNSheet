@@ -1,12 +1,12 @@
-import {createContext, useCallback, useContext, useState} from 'react';
-import {Animated} from 'react-native';
-import {Sheets, ActionSheetRef} from '../types';
+import { createContext, useCallback, useContext, useState } from 'react';
+import { Animated } from 'react-native';
+import { Sheets, ActionSheetRef } from '../types';
 
 export type RouteDefinition<T extends {} = {}> = T;
 
 export type Route<
   Key extends keyof Sheets = never,
-  K extends keyof Sheets[Key]['routes'] = never,
+  K extends keyof Sheets[Key]['routes'] = never
 > = {
   /**
    * Name of the route.
@@ -35,7 +35,7 @@ export type Router<Key extends keyof Sheets = never> = {
   navigate: <RouteKey extends keyof Sheets[Key]['routes']>(
     name: RouteKey | (string & {}),
     params?: Sheets[Key]['routes'][RouteKey] | any,
-    snap?: number,
+    snap?: number
   ) => void;
   /**
    * Navigate back from a route.
@@ -45,7 +45,7 @@ export type Router<Key extends keyof Sheets = never> = {
    */
   goBack: <RouteKey extends keyof Sheets[Key]['routes']>(
     name?: RouteKey | (string & {}),
-    snap?: number,
+    snap?: number
   ) => void;
   /**
    * Close the action sheet.
@@ -98,7 +98,7 @@ export const useRouter = ({
         delay: delay,
       }).start();
     },
-    [getRef, routeOpacity],
+    [getRef, routeOpacity]
   );
 
   const navigate = useCallback(
@@ -112,24 +112,26 @@ export const useRouter = ({
             return state;
           }
           const currentIndex = state.findIndex(
-            route => route.name === next.name,
+            route => route.name === next.name
           );
           if (currentIndex > -1) {
             const nextStack = [...state];
             nextStack.splice(currentIndex, 1);
-            return [...nextStack, {...next, params: params || next.params}];
+            return [...nextStack, { ...next, params: params || next.params }];
           }
           onNavigate?.(next.name);
           animate(0, 1, 150);
-          return [...state, {...next, params: params || next.params}];
+          return [...state, { ...next, params: params || next.params }];
         });
       }, 100);
     },
-    [animate, routes, onNavigate],
+    [animate, routes, onNavigate]
   );
 
   const initialNavigation = () => {
-    if (!routes) return;
+    if (!routes) {
+      return;
+    }
     if (initialRoute) {
       const route = routes?.find(rt => rt.name === initialRoute);
       if (route) {
@@ -215,7 +217,8 @@ export const RouterContext = createContext<Router | undefined>(undefined);
  */
 export function useSheetRouter<SheetId extends keyof Sheets>(
   //@ts-ignore
-  id?: SheetId | (string & {}),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  id?: SheetId | (string & {})
 ): Router<SheetId> | undefined {
   return useContext(RouterContext);
 }
@@ -226,16 +229,22 @@ export const RouterParamsContext = createContext<any>(undefined);
  */
 export function useSheetRouteParams<
   SheetId extends keyof Sheets = never,
-  RouteKey extends keyof Sheets[SheetId]['routes'] = never,
+  RouteKey extends keyof Sheets[SheetId]['routes'] = never
+>(
   //@ts-ignore
->(id?: SheetId | (string & {}), routeKey?: RouteKey | (string & {})): Sheets[SheetId]['routes'][RouteKey] {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  id?: SheetId | (string & {}),
+  //@ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  routeKey?: RouteKey | (string & {})
+): Sheets[SheetId]['routes'][RouteKey] {
   const context = useContext(RouterParamsContext);
   return context;
 }
 
 export type RouteScreenProps<
   SheetId extends keyof Sheets = never,
-  RouteKey extends keyof Sheets[SheetId]['routes'] = never,
+  RouteKey extends keyof Sheets[SheetId]['routes'] = never
 > = {
   router: Router<SheetId>;
   params: Sheets[SheetId]['routes'][RouteKey];

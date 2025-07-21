@@ -1,7 +1,7 @@
-import React, {useCallback} from 'react';
-import {Text, View} from 'react-native';
+import React, { useCallback } from 'react';
+import { Text, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
-import {FlashList} from 'react-native-actions-sheet/dist/src/views/FlashList';
+import { FlashList } from 'react-native-actions-sheet/dist/src/views/FlashList';
 
 function FlashListSheet() {
   const vegetableNamesWithEmoji = [
@@ -73,7 +73,7 @@ function FlashListSheet() {
   ];
 
   const renderItem = useCallback(
-    ({item}) => (
+    ({ item }) => (
       <Text
         style={{
           color: 'black',
@@ -81,16 +81,15 @@ function FlashListSheet() {
           height: 40,
           verticalAlign: 'middle',
           width: '100%',
-        }}>
+        }}
+      >
         {item}
       </Text>
     ),
-    [],
+    []
   );
   return (
-    <ActionSheet
-      gestureEnabled
-      >
+    <ActionSheet gestureEnabled>
       <View
         style={{
           paddingHorizontal: 12,
@@ -98,7 +97,8 @@ function FlashListSheet() {
           paddingTop: 20,
           gap: 10,
           width: '100%',
-        }}>
+        }}
+      >
         <FlashList
           data={vegetableNamesWithEmoji}
           estimatedItemSize={40}
@@ -109,7 +109,8 @@ function FlashListSheet() {
                 fontSize: 30,
                 width: '100%',
                 paddingBottom: 10,
-              }}>
+              }}
+            >
               Vegetables
             </Text>
           }

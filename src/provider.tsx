@@ -1,4 +1,3 @@
-/* eslint-disable curly */
 import React, {
   createContext,
   MutableRefObject,
@@ -10,8 +9,9 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import {actionSheetEventManager} from './eventmanager';
-import {ActionSheetRef, Sheets} from './types';
+import { actionSheetEventManager } from './eventmanager';
+
+import { ActionSheetRef, Sheets } from './types';
 
 export const providerRegistryStack: string[] = [];
 
@@ -19,7 +19,7 @@ export const providerRegistryStack: string[] = [];
  * An object that holds all the sheet components against their ids.
  */
 export const sheetsRegistry: {
-  [context: string]: {[id: string]: React.ElementType};
+  [context: string]: { [id: string]: React.ElementType };
 } = {
   global: {},
 };
@@ -74,7 +74,7 @@ export function SheetProvider({
 }) {
   const [, forceUpdate] = useReducer(x => x + 1, 0);
   const sheetIds = Object.keys(
-    sheetsRegistry[context] || sheetsRegistry['global'] || {},
+    sheetsRegistry[context] || sheetsRegistry.global || {}
   );
   const onRegister = React.useCallback(() => {
     // Rerender when a new sheet is added.
@@ -87,7 +87,7 @@ export function SheetProvider({
       : providerRegistryStack.push(context) - 1;
     const unsub = actionSheetEventManager.subscribe(
       `${context}-on-register`,
-      onRegister,
+      onRegister
     );
     return () => {
       providerRegistryStack.splice(providerRegistryStack.indexOf(context), 1);
@@ -110,7 +110,7 @@ const ProviderContext = createContext('global');
 const SheetIDContext = createContext<string | undefined>(undefined);
 
 export const SheetRefContext = createContext<RefObject<ActionSheetRef | null>>(
-  {} as any,
+  {} as any
 );
 
 const SheetPayloadContext = createContext<any>(undefined);
@@ -135,7 +135,8 @@ export const useSheetIDContext = () => useContext(SheetIDContext);
 
 export function useSheetRef<SheetId extends keyof Sheets = never>(
   //@ts-ignore
-  id?: SheetId | (string & {}),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  id?: SheetId | (string & {})
 ) {
   return useContext(SheetRefContext) as MutableRefObject<
     ActionSheetRef<SheetId>
@@ -148,12 +149,13 @@ export function useSheetRef<SheetId extends keyof Sheets = never>(
  */
 export function useSheetPayload<SheetId extends keyof Sheets = never>(
   //@ts-ignore
-  id?: SheetId | (string & {}),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  id?: SheetId | (string & {})
 ) {
   return useContext(SheetPayloadContext) as Sheets[SheetId]['payload'];
 }
 
-const RenderSheet = ({id, context}: {id: string; context: string}) => {
+const RenderSheet = ({ id, context }: { id: string; context: string }) => {
   const [payload, setPayload] = useState();
   const [visible, setVisible] = useState(false);
   const ref = useRef<ActionSheetRef | null>(null);
@@ -169,7 +171,7 @@ const RenderSheet = ({id, context}: {id: string; context: string}) => {
       setPayload(data);
       setVisible(true);
     },
-    [context],
+    [context]
   );
 
   const onClose = React.useCallback(
@@ -180,14 +182,14 @@ const RenderSheet = ({id, context}: {id: string; context: string}) => {
         setPayload(undefined);
       }, 1);
     },
-    [context],
+    [context]
   );
 
   const onHide = React.useCallback(
     (data: any, ctx = 'global') => {
       actionSheetEventManager.publish(`hide_${id}`, data, ctx);
     },
-    [id],
+    [id]
   );
 
   useEffect(() => {

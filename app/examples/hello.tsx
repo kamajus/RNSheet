@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text} from 'react-native';
+import { Text } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 
 function Hello() {
@@ -10,12 +10,14 @@ function Hello() {
         height: 400,
         alignItems: 'center',
         justifyContent: 'center',
-      }}>
+      }}
+    >
       <Text
         style={{
           color: 'black',
           fontSize: 30,
-        }}>
+        }}
+      >
         Hello!
       </Text>
     </ActionSheet>

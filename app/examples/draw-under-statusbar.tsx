@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import { Text, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -15,18 +15,21 @@ function DrawUnderStatusBar() {
       drawUnderStatusBar
       containerStyle={{
         height: '100%',
-      }}>
+      }}
+    >
       <View
         style={{
           alignItems: 'center',
           justifyContent: 'center',
           height: '100%',
-        }}>
+        }}
+      >
         <Text
           style={{
             color: 'black',
             fontSize: 30,
-          }}>
+          }}
+        >
           I draw under status bar!
         </Text>
       </View>

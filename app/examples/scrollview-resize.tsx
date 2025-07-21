@@ -1,7 +1,7 @@
-import React, {useCallback} from 'react';
-import {Text, TextInput, View} from 'react-native';
-import ActionSheet, {ScrollView} from 'react-native-actions-sheet';
-import {Button} from '../components/button';
+import React, { useCallback } from 'react';
+import { Text, View } from 'react-native';
+import ActionSheet, { ScrollView } from 'react-native-actions-sheet';
+import { Button } from '../components/button';
 
 const vegetableNamesWithEmoji = [
   '🍅 Tomato',
@@ -69,7 +69,7 @@ function ResizeSheet() {
         children={item}
       />
     ),
-    [],
+    []
   );
 
   return (
@@ -78,7 +78,8 @@ function ResizeSheet() {
       containerStyle={{
         borderWidth: 1,
         borderColor: '#f0f0f0',
-      }}>
+      }}
+    >
       <View
         style={{
           paddingHorizontal: 12,
@@ -86,7 +87,8 @@ function ResizeSheet() {
           paddingTop: 20,
           gap: 10,
           width: '100%',
-        }}>
+        }}
+      >
         <Button
           title="Add vegetable"
           onPress={() => {
@@ -110,7 +112,8 @@ function ResizeSheet() {
           style={{
             width: '100%',
             flexShrink: 1,
-          }}>
+          }}
+        >
           {vegetables.map(renderItem)}
         </ScrollView>
       </View>

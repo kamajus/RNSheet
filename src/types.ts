@@ -8,7 +8,7 @@ import {
   StyleProp,
 } from 'react-native';
 import EventManager from './eventmanager';
-import {Route} from './hooks/use-router';
+import { Route } from './hooks/use-router';
 
 export interface Sheets {}
 
@@ -63,7 +63,7 @@ export type ActionSheetRef<SheetId extends keyof Sheets = never> = {
   modifyGesturesForLayout: (
     id: string,
     layout: LayoutRectangle | undefined,
-    scrollOffset: number,
+    scrollOffset: number
   ) => void;
 
   isGestureEnabled: () => boolean;
@@ -356,7 +356,7 @@ export type ActionSheetProps<SheetId extends keyof Sheets = never> = {
    * react-native-safe-area-insets. This also helps in giving a tiny boost
    * in performance as the sheet does not have to calculate insets anymore.
    */
-  safeAreaInsets?: {top: number; left: number; right: number; bottom: number};
+  safeAreaInsets?: { top: number; left: number; right: number; bottom: number };
   /**
    * A list of routes for the router.
    */

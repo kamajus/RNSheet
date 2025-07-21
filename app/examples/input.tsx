@@ -4,7 +4,6 @@ import ActionSheet from 'react-native-actions-sheet';
 import { TextInput } from 'react-native-gesture-handler';
 
 function Input() {
-
   return (
     <ActionSheet gestureEnabled>
       <View
@@ -14,7 +13,8 @@ function Input() {
           alignItems: 'center',
           justifyContent: 'center',
           gap: 10,
-        }}>
+        }}
+      >
         <TextInput
           style={{
             color: 'black',

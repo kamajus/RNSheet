@@ -1,7 +1,7 @@
-import React, {useCallback} from 'react';
-import {Text, View} from 'react-native';
-import ActionSheet, {FlatList, useSheetRef} from 'react-native-actions-sheet';
-import {Button} from '../components/button';
+import React, { useCallback } from 'react';
+import { Text, View } from 'react-native';
+import ActionSheet, { FlatList, useSheetRef } from 'react-native-actions-sheet';
+import { Button } from '../components/button';
 
 function FlatListSheet() {
   const ref = useSheetRef();
@@ -74,7 +74,7 @@ function FlatListSheet() {
   ];
 
   const renderItem = useCallback(
-    ({item}) => (
+    ({ item }) => (
       <Text
         style={{
           color: 'black',
@@ -82,17 +82,16 @@ function FlatListSheet() {
           height: 40,
           verticalAlign: 'middle',
           width: '100%',
-        }}>
+        }}
+      >
         {item}
       </Text>
     ),
-    [],
+    []
   );
 
   return (
-    <ActionSheet
-      gestureEnabled
-      snapPoints={[50, 100]}>
+    <ActionSheet gestureEnabled snapPoints={[50, 100]}>
       <View
         style={{
           paddingHorizontal: 12,
@@ -101,7 +100,8 @@ function FlatListSheet() {
           paddingTop: 20,
           gap: 10,
           width: '100%',
-        }}>
+        }}
+      >
         <FlatList
           data={vegetableNamesWithEmoji}
           style={{
@@ -114,7 +114,8 @@ function FlatListSheet() {
                 fontSize: 30,
                 width: '100%',
                 paddingBottom: 10,
-              }}>
+              }}
+            >
               Vegetables
             </Text>
           }
