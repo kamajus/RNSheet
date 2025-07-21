@@ -8,7 +8,6 @@ import React, {
   useRef,
   useState,
 } from 'react';
-
 import {
   Animated,
   BackHandler,
@@ -170,7 +169,6 @@ export default forwardRef<ActionSheetRef, ActionSheetProps>(
       portrait: true,
       paddingBottom: props?.useBottomSafeAreaPadding ? 25 : 0,
     });
-
     const rootViewLayoutEventValues = useRef<{
       timer?: NodeJS.Timeout;
       sub?: { unsubscribe: () => void };
@@ -773,9 +771,9 @@ export default forwardRef<ActionSheetRef, ActionSheetProps>(
         ? { enabled: false }
         : ({
             onBegan: () => {
-              if (Platform.OS === 'android') {
-                scrollable(false);
-              }
+              // if (Platform.OS === 'android') {
+              //   scrollable(false);
+              // }
             },
             onGestureEvent(event) {
               if (sheetId && !isRenderedOnTop(sheetId, currentContext)) return;
