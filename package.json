@@ -1,19 +1,18 @@
 {
-  "name": "react-native-actions-sheet",
-  "version": "0.9.7",
-  "description": "A Cross Platform(Android & iOS) ActionSheet with a robust and flexible api, native performance and zero dependency code for react native. Create anything you want inside ActionSheet.",
+  "name": "rn-sheet",
+  "version": "1.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ammarahm-ed/react-native-actions-sheet.git"
+    "url": "git+https://github.com/kamajus/RNSheet.git"
   },
-  "author": "ammarahm-ed",
+  "author": "Carlos",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ammarahm-ed/react-native-actions-sheet/issues/"
+    "url": "https://github.com/kamajus/RNSheet/issues/"
   },
-  "homepage": "https://github.com/ammarahm-ed/react-native-actions-sheet",
+  "homepage": "https://github.com/kamajus/RNSheet",
   "keywords": [
     "bottom-animated",
     "react-native",
