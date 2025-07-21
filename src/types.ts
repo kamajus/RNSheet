@@ -200,7 +200,7 @@ export type ActionSheetProps<SheetId extends keyof Sheets = never> = {
   /**
    * Any custom styles for the container.
    * */
-  containerStyle?: StyleProp<ViewStyle>;
+  containerStyle?: ViewStyle;
 
   /**
    * Control closing ActionSheet by touching on backdrop.
