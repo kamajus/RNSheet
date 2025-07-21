@@ -1,10 +1,10 @@
-import { Text, TextStyle, TouchableOpacity } from 'react-native';
-import { TouchableOpacityProps } from 'react-native-gesture-handler';
+import { Text, TextStyle, TouchableOpacity } from 'react-native'
+import { TouchableOpacityProps } from 'react-native-gesture-handler'
 
 export function Button(
   props: TouchableOpacityProps & {
-    btnTitleStyle?: TextStyle;
-    title: string;
+    btnTitleStyle?: TextStyle
+    title: string
   }
 ) {
   return (
@@ -42,5 +42,5 @@ export function Button(
         {props.title}
       </Text>
     </TouchableOpacity>
-  );
+  )
 }

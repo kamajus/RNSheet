@@ -1,7 +1,7 @@
-import React, { useCallback } from 'react';
-import { Text, View } from 'react-native';
-import ActionSheet from 'react-native-actions-sheet';
-import { FlashList } from 'react-native-actions-sheet/dist/src/views/FlashList';
+import React, { useCallback } from 'react'
+import { Text, View } from 'react-native'
+import ActionSheet from 'react-native-actions-sheet'
+import { FlashList } from 'react-native-actions-sheet/dist/src/views/FlashList'
 
 function FlashListSheet() {
   const vegetableNamesWithEmoji = [
@@ -70,7 +70,7 @@ function FlashListSheet() {
     '🍊 Orange',
     '🍎 Red Apple',
     '🍏 Green Apple',
-  ];
+  ]
 
   const renderItem = useCallback(
     ({ item }) => (
@@ -87,7 +87,7 @@ function FlashListSheet() {
       </Text>
     ),
     []
-  );
+  )
   return (
     <ActionSheet gestureEnabled>
       <View
@@ -118,7 +118,7 @@ function FlashListSheet() {
         />
       </View>
     </ActionSheet>
-  );
+  )
 }
 
-export default FlashListSheet;
+export default FlashListSheet

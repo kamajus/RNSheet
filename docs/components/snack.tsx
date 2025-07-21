@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
-import { useLayoutEffect } from 'react';
-import Script from 'next/script';
-import { useTheme } from 'nextra-theme-docs';
+'use client'
+
+import React from 'react'
+import Script from 'next/script'
+import { useTheme } from 'nextra-theme-docs'
 
 export default function Snack() {
-  const [ready, setReady] = useState(false);
-  const { theme, systemTheme } = useTheme();
-  const currentTheme = theme === 'system' ? systemTheme : theme;
-  useLayoutEffect(() => {
-    setReady(true);
-  }, []);
+  const { theme, systemTheme } = useTheme()
+  const currentTheme = theme === 'system' ? systemTheme : theme
 
-  return !ready ? null : (
+  return (
     <>
       <Script src="https://snack.expo.dev/embed.js" async />
 
@@ -37,5 +34,5 @@ export default function Snack() {
         }}
       />
     </>
-  );
+  )
 }

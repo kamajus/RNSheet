@@ -1,6 +1,6 @@
-import React from 'react';
-import { Text, View } from 'react-native';
-import ActionSheet from 'react-native-actions-sheet';
+import React from 'react'
+import { Text, View } from 'react-native'
+import ActionSheet from 'react-native-actions-sheet'
 
 function Gestures() {
   return (
@@ -29,7 +29,7 @@ function Gestures() {
         </Text>
       </View>
     </ActionSheet>
-  );
+  )
 }
 
-export default Gestures;
+export default Gestures

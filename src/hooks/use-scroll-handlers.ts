@@ -1,20 +1,16 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import {
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  Platform,
-} from 'react-native';
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { NativeScrollEvent, NativeSyntheticEvent, Platform } from 'react-native'
 import {
   DraggableNodeOptions,
   LayoutRect,
   useDraggableNodesContext,
   usePanGestureContext,
-} from '../context';
-import { EventHandlerSubscription } from '../eventmanager';
+} from '../context'
+import { EventHandlerSubscription } from '../eventmanager'
 
 export const ScrollState = {
   END: -1,
-};
+}
 
 const InitialLayoutRect = {
   w: 0,
@@ -23,56 +19,56 @@ const InitialLayoutRect = {
   y: 0,
   px: 0,
   py: 0,
-};
+}
 
 export function resolveScrollRef(ref: any) {
   // FlatList
   if (ref.current?._listRef) {
-    return ref.current._listRef?._scrollRef;
+    return ref.current._listRef?._scrollRef
   }
   // FlashList
   if (ref.current?.rlvRef) {
-    return ref.current?.rlvRef?._scrollComponent?._scrollViewRef;
+    return ref.current?.rlvRef?._scrollComponent?._scrollViewRef
   }
   // ScrollView
-  return ref.current;
+  return ref.current
 }
 
 export function useDraggable<T>(options?: DraggableNodeOptions) {
-  const gestureContext = usePanGestureContext();
-  const draggableNodes = useDraggableNodesContext();
-  const nodeRef = useRef<T>(null);
-  const offset = useRef({ x: 0, y: 0 });
-  const layout = useRef<LayoutRect>(InitialLayoutRect);
+  const gestureContext = usePanGestureContext()
+  const draggableNodes = useDraggableNodesContext()
+  const nodeRef = useRef<T>(null)
+  const offset = useRef({ x: 0, y: 0 })
+  const layout = useRef<LayoutRect>(InitialLayoutRect)
   useEffect(() => {
     const pushNode = () => {
       const index = draggableNodes.nodes.current?.findIndex(
         node => node.ref === nodeRef
-      );
+      )
       if (index === undefined || index === -1) {
         draggableNodes.nodes.current?.push({
           ref: nodeRef,
           offset: offset,
           rect: layout,
           handlerConfig: options,
-        });
+        })
       }
-    };
+    }
 
     const popNode = () => {
       const index = draggableNodes.nodes.current?.findIndex(
         node => node.ref === nodeRef
-      );
+      )
 
       if (index === undefined || index > -1) {
-        draggableNodes.nodes.current?.splice(index as number, 1);
+        draggableNodes.nodes.current?.splice(index as number, 1)
       }
-    };
-    pushNode();
+    }
+    pushNode()
     return () => {
-      popNode();
-    };
-  }, [draggableNodes.nodes, options]);
+      popNode()
+    }
+  }, [draggableNodes.nodes, options])
 
   return {
     nodeRef,
@@ -80,7 +76,7 @@ export function useDraggable<T>(options?: DraggableNodeOptions) {
     draggableNodes,
     layout,
     gestureContext,
-  };
+  }
 }
 
 /**
@@ -102,11 +98,11 @@ export function useDraggable<T>(options?: DraggableNodeOptions) {
  */
 export function useScrollHandlers<T>(options?: DraggableNodeOptions) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_render, setRender] = useState(false);
+  const [_render, setRender] = useState(false)
 
-  const { nodeRef, gestureContext, offset, layout } = useDraggable<T>(options);
-  const timer = useRef<NodeJS.Timeout>();
-  const subscription = useRef<EventHandlerSubscription>();
+  const { nodeRef, gestureContext, offset, layout } = useDraggable<T>(options)
+  const timer = useRef<NodeJS.Timeout>()
+  const subscription = useRef<EventHandlerSubscription>()
   const onMeasure = useCallback(
     (x: number, y: number, w: number, h: number, px: number, py: number) => {
       layout.current = {
@@ -116,69 +112,69 @@ export function useScrollHandlers<T>(options?: DraggableNodeOptions) {
         h: h + 10,
         px,
         py,
-      };
+      }
     },
     [layout]
-  );
+  )
 
   const measureAndLayout = React.useCallback(() => {
-    clearTimeout(timer.current);
+    clearTimeout(timer.current)
     timer.current = setTimeout(() => {
-      const ref = resolveScrollRef(nodeRef);
+      const ref = resolveScrollRef(nodeRef)
       if (Platform.OS === 'web') {
         if (!ref) {
-          return;
+          return
         }
-        const rect = (ref as HTMLDivElement).getBoundingClientRect();
-        (ref as HTMLDivElement).style.overflow = 'auto';
-        onMeasure(rect.x, rect.y, rect.width, rect.height, rect.left, rect.top);
+        const rect = (ref as HTMLDivElement).getBoundingClientRect()
+        ;(ref as HTMLDivElement).style.overflow = 'auto'
+        onMeasure(rect.x, rect.y, rect.width, rect.height, rect.left, rect.top)
       } else {
-        ref?.measure?.(onMeasure);
+        ref?.measure?.(onMeasure)
       }
-    }, 300);
-  }, [nodeRef, onMeasure]);
+    }, 300)
+  }, [nodeRef, onMeasure])
 
   useEffect(() => {
     if (Platform.OS === 'web' || !gestureContext.ref) {
-      return;
+      return
     }
     const interval = setInterval(() => {
       // Trigger a rerender when gestureContext gets populated.
       if (gestureContext.ref.current) {
-        clearInterval(interval);
-        setRender(true);
+        clearInterval(interval)
+        setRender(true)
       }
-    }, 10);
-  }, [gestureContext.ref]);
+    }, 10)
+  }, [gestureContext.ref])
 
   const memoizedProps = React.useMemo(() => {
     return {
       ref: nodeRef,
       simultaneousHandlers: gestureContext.ref,
       onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-        const { x, y } = event.nativeEvent.contentOffset;
+        const { x, y } = event.nativeEvent.contentOffset
         const maxOffsetX =
-          event.nativeEvent.contentSize.width - layout.current.w;
+          event.nativeEvent.contentSize.width - layout.current.w
         const maxOffsetY =
-          event.nativeEvent.contentSize.height - layout.current.h;
+          event.nativeEvent.contentSize.height - layout.current.h
 
         offset.current = {
           x: x === maxOffsetX || x > maxOffsetX - 5 ? ScrollState.END : x,
           y: y === maxOffsetY || y > maxOffsetY - 5 ? ScrollState.END : y,
-        };
+        }
       },
       scrollEventThrottle: 1,
       onLayout: () => {
-        measureAndLayout();
-        subscription.current?.unsubscribe();
+        measureAndLayout()
+        subscription.current?.unsubscribe()
         subscription.current = gestureContext.eventManager.subscribe(
           'onoffsetchange',
           () => {
-            measureAndLayout();
+            measureAndLayout()
           }
-        );
+        )
       },
-    };
+    }
   }, [
     gestureContext.eventManager,
     gestureContext.ref,
@@ -186,7 +182,7 @@ export function useScrollHandlers<T>(options?: DraggableNodeOptions) {
     measureAndLayout,
     nodeRef,
     offset,
-  ]);
+  ])
 
-  return memoizedProps;
+  return memoizedProps
 }

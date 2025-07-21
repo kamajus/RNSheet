@@ -1,14 +1,14 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React from 'react'
+import { Text, View } from 'react-native'
 import ActionSheet, {
   Route,
   useSheetRouteParams,
   useSheetRouter,
-} from 'react-native-actions-sheet';
-import { Button } from '../components/button';
+} from 'react-native-actions-sheet'
+import { Button } from '../components/button'
 
 const RouteA = () => {
-  const router = useSheetRouter('sheet-router');
+  const router = useSheetRouter('sheet-router')
   return (
     <View
       style={{
@@ -32,17 +32,17 @@ const RouteA = () => {
       <Button
         title="Go to Route B"
         onPress={() => {
-          router.navigate('route-b', { param: 'value' });
+          router.navigate('route-b', { param: 'value' })
         }}
       />
     </View>
-  );
-};
+  )
+}
 
 const RouteB = () => {
-  const router = useSheetRouter('sheet-router');
-  const params = useSheetRouteParams('sheet-router', 'route-b');
-  console.log('route-b', 'params', params);
+  const router = useSheetRouter('sheet-router')
+  const params = useSheetRouteParams('sheet-router', 'route-b')
+  console.log('route-b', 'params', params)
 
   return (
     <View
@@ -67,12 +67,12 @@ const RouteB = () => {
       <Button
         title="Go Back"
         onPress={() => {
-          router?.goBack(undefined, 10);
+          router?.goBack(undefined, 10)
         }}
       />
     </View>
-  );
-};
+  )
+}
 
 const routes: Route[] = [
   {
@@ -83,7 +83,7 @@ const routes: Route[] = [
     name: 'route-b',
     component: RouteB,
   },
-];
+]
 
 function RouterSheet() {
   return (
@@ -99,7 +99,7 @@ function RouterSheet() {
       springOffset={50}
       defaultOverlayOpacity={0.3}
     />
-  );
+  )
 }
 
-export default RouterSheet;
+export default RouterSheet

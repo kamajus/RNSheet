@@ -1,10 +1,10 @@
-import ActionSheet from './src/index';
+import ActionSheet from './src/index'
 export {
   SheetManager,
   setBaseZIndexForActionSheets,
   getSheetStack,
   isRenderedOnTop,
-} from './src/sheetmanager';
+} from './src/sheetmanager'
 export {
   registerSheet,
   SheetProps,
@@ -13,14 +13,14 @@ export {
   useSheetIDContext,
   useSheetRef,
   useSheetPayload,
-} from './src/provider';
+} from './src/provider'
 export {
   ActionSheetProps,
   SheetDefinition,
   Sheets,
   ActionSheetRef,
-} from './src/types';
-export { useScrollHandlers } from './src/hooks/use-scroll-handlers';
+} from './src/types'
+export { useScrollHandlers } from './src/hooks/use-scroll-handlers'
 export {
   useSheetRouter,
   useSheetRouteParams,
@@ -28,7 +28,7 @@ export {
   RouteScreenProps,
   Router,
   RouteDefinition,
-} from './src/hooks/use-router';
-export { ScrollView } from './src/views/ScrollView';
-export { FlatList } from './src/views/FlatList';
-export default ActionSheet;
+} from './src/hooks/use-router'
+export { ScrollView } from './src/views/ScrollView'
+export { FlatList } from './src/views/FlatList'
+export default ActionSheet

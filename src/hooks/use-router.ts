@@ -1,8 +1,8 @@
-import { createContext, useCallback, useContext, useState } from 'react';
-import { Animated } from 'react-native';
-import { Sheets, ActionSheetRef } from '../types';
+import { createContext, useCallback, useContext, useState } from 'react'
+import { Animated } from 'react-native'
+import { Sheets, ActionSheetRef } from '../types'
 
-export type RouteDefinition<T extends {} = {}> = T;
+export type RouteDefinition<T extends {} = {}> = T
 
 export type Route<
   Key extends keyof Sheets = never,
@@ -11,19 +11,19 @@ export type Route<
   /**
    * Name of the route.
    */
-  name: K | (string & {});
+  name: K | (string & {})
   /**
    * A react component that will render when this route is navigated to.
    */
-  component: any;
+  component: any
   /**
    * Initial params for the route.
    */
-  params?: Sheets[Key]['routes'][K];
-};
+  params?: Sheets[Key]['routes'][K]
+}
 
 export type Router<Key extends keyof Sheets = never> = {
-  currentRoute: Route<Key>;
+  currentRoute: Route<Key>
 
   /**
    * Navigate to a route
@@ -36,7 +36,7 @@ export type Router<Key extends keyof Sheets = never> = {
     name: RouteKey | (string & {}),
     params?: Sheets[Key]['routes'][RouteKey] | any,
     snap?: number
-  ) => void;
+  ) => void
   /**
    * Navigate back from a route.
    *
@@ -46,29 +46,29 @@ export type Router<Key extends keyof Sheets = never> = {
   goBack: <RouteKey extends keyof Sheets[Key]['routes']>(
     name?: RouteKey | (string & {}),
     snap?: number
-  ) => void;
+  ) => void
   /**
    * Close the action sheet.
    */
-  close: () => void;
+  close: () => void
   /**
    * Pop to top of the stack.
    */
-  popToTop: () => void;
+  popToTop: () => void
   /**
    * Whether this router has any routes registered.
    */
-  hasRoutes: () => boolean | undefined;
+  hasRoutes: () => boolean | undefined
   /**
    * Get the currently rendered stack.
    */
-  stack: Route<Key>[];
+  stack: Route<Key>[]
   /**
    * An internal function called by sheet to navigate to initial route.
    */
-  initialNavigation: () => void;
-  canGoBack: () => boolean;
-};
+  initialNavigation: () => void
+  canGoBack: () => boolean
+}
 
 export const useRouter = ({
   onNavigate,
@@ -78,125 +78,125 @@ export const useRouter = ({
   getRef,
   routeOpacity,
 }: {
-  initialRoute?: string;
-  routes?: Route[];
-  getRef?: () => ActionSheetRef;
-  onNavigate?: (route: string) => void;
-  onNavigateBack?: (route: string) => void;
-  routeOpacity: Animated.Value;
+  initialRoute?: string
+  routes?: Route[]
+  getRef?: () => ActionSheetRef
+  onNavigate?: (route: string) => void
+  onNavigateBack?: (route: string) => void
+  routeOpacity: Animated.Value
 }): Router => {
-  const [stack, setStack] = useState<Route[]>([]);
-  const currentRoute: Route | undefined = stack?.[stack.length - 1];
+  const [stack, setStack] = useState<Route[]>([])
+  const currentRoute: Route | undefined = stack?.[stack.length - 1]
 
   const animate = useCallback(
     (snap = 0, opacity = 0, delay = 0) => {
-      getRef?.().snapToRelativeOffset(snap);
+      getRef?.().snapToRelativeOffset(snap)
       Animated.timing(routeOpacity, {
         toValue: opacity,
         duration: 150,
         useNativeDriver: true,
         delay: delay,
-      }).start();
+      }).start()
     },
     [getRef, routeOpacity]
-  );
+  )
 
   const navigate = useCallback(
     (name: string, params?: any, snap?: number) => {
-      animate(snap || 20, 0);
+      animate(snap || 20, 0)
       setTimeout(() => {
         setStack((state: any) => {
-          const next = routes?.find(route => route.name === name);
+          const next = routes?.find(route => route.name === name)
           if (!next) {
-            animate(0, 1);
-            return state;
+            animate(0, 1)
+            return state
           }
           const currentIndex = state.findIndex(
             route => route.name === next.name
-          );
+          )
           if (currentIndex > -1) {
-            const nextStack = [...state];
-            nextStack.splice(currentIndex, 1);
-            return [...nextStack, { ...next, params: params || next.params }];
+            const nextStack = [...state]
+            nextStack.splice(currentIndex, 1)
+            return [...nextStack, { ...next, params: params || next.params }]
           }
-          onNavigate?.(next.name);
-          animate(0, 1, 150);
-          return [...state, { ...next, params: params || next.params }];
-        });
-      }, 100);
+          onNavigate?.(next.name)
+          animate(0, 1, 150)
+          return [...state, { ...next, params: params || next.params }]
+        })
+      }, 100)
     },
     [animate, routes, onNavigate]
-  );
+  )
 
   const initialNavigation = () => {
     if (!routes) {
-      return;
+      return
     }
     if (initialRoute) {
-      const route = routes?.find(rt => rt.name === initialRoute);
+      const route = routes?.find(rt => rt.name === initialRoute)
       if (route) {
-        setStack([route]);
+        setStack([route])
       }
     } else {
-      setStack([routes[0]]);
+      setStack([routes[0]])
     }
     Animated.timing(routeOpacity, {
       toValue: 1,
       duration: 150,
       useNativeDriver: true,
-    }).start();
-  };
+    }).start()
+  }
 
   const goBack = (name?: string, snap?: number) => {
-    getRef?.().snapToRelativeOffset(snap || -10);
-    animate(snap || -10, 0);
+    getRef?.().snapToRelativeOffset(snap || -10)
+    animate(snap || -10, 0)
     setTimeout(() => {
       setStack(state => {
-        const next = routes?.find(route => route.name === name);
+        const next = routes?.find(route => route.name === name)
         if (state.length === 1) {
-          close();
-          animate(0, 1);
-          return state;
+          close()
+          animate(0, 1)
+          return state
         }
 
         if (!next) {
-          const nextStack = [...state];
-          nextStack.pop();
+          const nextStack = [...state]
+          nextStack.pop()
           if (currentRoute) {
-            onNavigateBack?.(nextStack[nextStack.length - 1]?.name);
-            animate(0, 1, 150);
+            onNavigateBack?.(nextStack[nextStack.length - 1]?.name)
+            animate(0, 1, 150)
           }
-          return nextStack;
+          return nextStack
         }
-        const currentIndex = stack.findIndex(route => route.name === next.name);
+        const currentIndex = stack.findIndex(route => route.name === next.name)
         if (currentIndex > -1) {
-          const nextStack = [...state];
-          nextStack.splice(currentIndex);
-          onNavigateBack?.(nextStack[nextStack.length - 1]?.name);
-          animate(0, 1, 150);
-          return [...nextStack, next];
+          const nextStack = [...state]
+          nextStack.splice(currentIndex)
+          onNavigateBack?.(nextStack[nextStack.length - 1]?.name)
+          animate(0, 1, 150)
+          return [...nextStack, next]
         }
-        animate(0, 1, 150);
-        onNavigateBack?.(next.name);
-        return [...stack, next];
-      });
-    }, 100);
-  };
+        animate(0, 1, 150)
+        onNavigateBack?.(next.name)
+        return [...stack, next]
+      })
+    }, 100)
+  }
 
   const close = () => {
-    getRef?.()?.hide();
-  };
+    getRef?.()?.hide()
+  }
 
   const popToTop = () => {
     if (!stack[0]) {
-      return;
+      return
     }
-    goBack(stack[0].name);
-  };
+    goBack(stack[0].name)
+  }
 
   const canGoBack = () => {
-    return stack && stack.length > 1;
-  };
+    return stack && stack.length > 1
+  }
 
   return {
     currentRoute: currentRoute as unknown as Route,
@@ -208,10 +208,10 @@ export const useRouter = ({
     stack,
     initialNavigation,
     canGoBack,
-  };
-};
+  }
+}
 
-export const RouterContext = createContext<Router | undefined>(undefined);
+export const RouterContext = createContext<Router | undefined>(undefined)
 /**
  * A hook that you can use to control the router.
  */
@@ -220,10 +220,10 @@ export function useSheetRouter<SheetId extends keyof Sheets>(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   id?: SheetId | (string & {})
 ): Router<SheetId> | undefined {
-  return useContext(RouterContext);
+  return useContext(RouterContext)
 }
 
-export const RouterParamsContext = createContext<any>(undefined);
+export const RouterParamsContext = createContext<any>(undefined)
 /**
  * A hook that returns the params for current navigation route.
  */
@@ -238,18 +238,18 @@ export function useSheetRouteParams<
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   routeKey?: RouteKey | (string & {})
 ): Sheets[SheetId]['routes'][RouteKey] {
-  const context = useContext(RouterParamsContext);
-  return context;
+  const context = useContext(RouterParamsContext)
+  return context
 }
 
 export type RouteScreenProps<
   SheetId extends keyof Sheets = never,
   RouteKey extends keyof Sheets[SheetId]['routes'] = never
 > = {
-  router: Router<SheetId>;
-  params: Sheets[SheetId]['routes'][RouteKey];
+  router: Router<SheetId>
+  params: Sheets[SheetId]['routes'][RouteKey]
   /**
    * @deprecated use `useSheetPayload` hook.
    */
-  payload: Sheets[SheetId]['beforeShowPayload'];
-};
+  payload: Sheets[SheetId]['beforeShowPayload']
+}

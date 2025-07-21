@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   Linking,
   SafeAreaView,
@@ -7,42 +7,42 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-} from 'react-native';
-import { SheetManager } from 'react-native-actions-sheet';
+} from 'react-native'
+import { SheetManager } from 'react-native-actions-sheet'
 
 const MainScreen = () => {
   const examples: {
-    title: string;
-    onOpen: () => void;
+    title: string
+    onOpen: () => void
   }[] = [
     {
       title: 'Hello',
       onOpen: () => {
-        SheetManager.show('hello');
+        SheetManager.show('hello')
       },
     },
     {
       title: 'Draw under status bar',
       onOpen: () => {
-        SheetManager.show('draw-under-statusbar');
+        SheetManager.show('draw-under-statusbar')
       },
     },
     {
       title: 'Gestures',
       onOpen: () => {
-        SheetManager.show('gestures');
+        SheetManager.show('gestures')
       },
     },
     {
       title: 'I can snap!',
       onOpen: () => {
-        SheetManager.show('snap-me');
+        SheetManager.show('snap-me')
       },
     },
     {
       title: 'Keyboard handling',
       onOpen: () => {
-        SheetManager.show('input');
+        SheetManager.show('input')
       },
     },
     {
@@ -56,76 +56,76 @@ const MainScreen = () => {
           'Cake 🍰',
           'Ice-cream 🍦',
           'Doughnut 🍩',
-        ];
+        ]
         SheetManager.show('payload', {
           payload: {
             candy: candyNames[Math.floor(Math.random() * candyNames.length)],
           },
-        });
+        })
       },
     },
     {
       title: 'Return data from sheet',
       onOpen: () => {
         SheetManager.show('return-data').then(result => {
-          console.log('User will star on github?', result);
+          console.log('User will star on github?', result)
           if (result) {
             Linking.openURL(
               'https://github.com/ammarahm-ed/react-native-actions-sheet'
-            );
+            )
           }
-        });
+        })
       },
     },
     {
       title: 'Interact with background',
       onOpen: () => {
-        SheetManager.show('background-interaction');
+        SheetManager.show('background-interaction')
       },
     },
     {
       title: 'Always open',
       onOpen: () => {
-        SheetManager.show('always-open');
+        SheetManager.show('always-open')
       },
     },
     {
       title: 'ScrollView',
       onOpen: () => {
-        SheetManager.show('scrollview');
+        SheetManager.show('scrollview')
       },
     },
     {
       title: 'FlatList',
       onOpen: () => {
-        SheetManager.show('flatlist');
+        SheetManager.show('flatlist')
       },
     },
     {
       title: 'FlashList',
       onOpen: () => {
-        SheetManager.show('flashlist');
+        SheetManager.show('flashlist')
       },
     },
     {
       title: 'Resize',
       onOpen: () => {
-        SheetManager.show('scrollview-resize');
+        SheetManager.show('scrollview-resize')
       },
     },
     {
       title: 'Nested sheets',
       onOpen: () => {
-        SheetManager.show('nested-sheets');
+        SheetManager.show('nested-sheets')
       },
     },
     {
       title: 'Sheet Router',
       onOpen: () => {
-        SheetManager.show('sheet-router');
+        SheetManager.show('sheet-router')
       },
     },
-  ];
+  ]
 
   // Examples left to add
   // 5. Resize with animation on add/remove item.
@@ -162,7 +162,7 @@ const MainScreen = () => {
             <TouchableOpacity
               key={item.title}
               onPress={() => {
-                item.onOpen();
+                item.onOpen()
               }}
               style={styles.btn}
             >
@@ -172,10 +172,10 @@ const MainScreen = () => {
         </ScrollView>
       </SafeAreaView>
     </>
-  );
-};
+  )
+}
 
-export default MainScreen;
+export default MainScreen
 
 const styles = StyleSheet.create({
   btn: {
@@ -206,4 +206,4 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
-});
+})

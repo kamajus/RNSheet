@@ -31,4 +31,4 @@ export default {
       <meta name="og:title" content="ActionSheet for React Native" />
     </>
   ),
-};
+}

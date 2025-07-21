@@ -1,9 +1,9 @@
-import React from 'react';
-import { Text } from 'react-native';
-import ActionSheet, { useSheetPayload } from 'react-native-actions-sheet';
+import React from 'react'
+import { Text } from 'react-native'
+import ActionSheet, { useSheetPayload } from 'react-native-actions-sheet'
 
 function Payload() {
-  const payload = useSheetPayload('payload');
+  const payload = useSheetPayload('payload')
   return (
     <ActionSheet
       containerStyle={{
@@ -23,7 +23,7 @@ function Payload() {
         Thanks for the {payload.candy}!
       </Text>
     </ActionSheet>
-  );
+  )
 }
 
-export default Payload;
+export default Payload

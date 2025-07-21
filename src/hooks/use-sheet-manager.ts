@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { actionSheetEventManager } from '../eventmanager';
-import { useProviderContext } from '../provider';
+import { useEffect, useState } from 'react'
+import { actionSheetEventManager } from '../eventmanager'
+import { useProviderContext } from '../provider'
 
 const useSheetManager = ({
   id,
@@ -8,42 +8,42 @@ const useSheetManager = ({
   onBeforeShow,
   onContextUpdate,
 }: {
-  id?: string;
-  onHide: (data?: any) => void;
-  onBeforeShow?: (data?: any) => void;
-  onContextUpdate: () => void;
+  id?: string
+  onHide: (data?: any) => void
+  onBeforeShow?: (data?: any) => void
+  onContextUpdate: () => void
 }) => {
-  const [visible, setVisible] = useState(false);
-  const currentContext = useProviderContext();
+  const [visible, setVisible] = useState(false)
+  const currentContext = useProviderContext()
 
   useEffect(() => {
-    if (!id) return undefined;
+    if (!id) return undefined
 
     const subscriptions = [
       actionSheetEventManager.subscribe(
         `show_${id}`,
         (data: any, context?: string) => {
-          if (currentContext !== context) return;
-          if (visible) return;
-          onContextUpdate?.();
-          onBeforeShow?.(data);
-          setVisible(true);
+          if (currentContext !== context) return
+          if (visible) return
+          onContextUpdate?.()
+          onBeforeShow?.(data)
+          setVisible(true)
         }
       ),
       actionSheetEventManager.subscribe(`hide_${id}`, (data: any, context) => {
-        if (currentContext !== context) return;
-        onHide?.(data);
+        if (currentContext !== context) return
+        onHide?.(data)
       }),
-    ];
+    ]
     return () => {
-      subscriptions.forEach(s => s?.unsubscribe?.());
-    };
-  }, [id, onHide, onBeforeShow, onContextUpdate, visible, currentContext]);
+      subscriptions.forEach(s => s?.unsubscribe?.())
+    }
+  }, [id, onHide, onBeforeShow, onContextUpdate, visible, currentContext])
 
   return {
     visible,
     setVisible,
-  };
-};
+  }
+}
 
-export default useSheetManager;
+export default useSheetManager

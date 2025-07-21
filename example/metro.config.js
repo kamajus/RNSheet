@@ -1,8 +1,8 @@
-const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
-const path = require('path');
-const exclusionList = require('metro-config/src/defaults/exclusionList');
+const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config')
+const path = require('path')
+const exclusionList = require('metro-config/src/defaults/exclusionList')
 
-const moduleRoot = path.resolve(__dirname, '..');
+const moduleRoot = path.resolve(__dirname, '..')
 
 /**
  * Metro configuration
@@ -28,7 +28,7 @@ const config = {
             )
           ),
           type: 'sourceFile',
-        };
+        }
       }
 
       if (moduleName === 'react-native-gesture-handler') {
@@ -40,10 +40,10 @@ const config = {
             )
           ),
           type: 'sourceFile',
-        };
+        }
       }
 
-      return context.resolveRequest(context, moduleName, platform);
+      return context.resolveRequest(context, moduleName, platform)
     },
     blockList: exclusionList([
       new RegExp(`${moduleRoot}/node_modules/react/.*`),
@@ -61,6 +61,6 @@ const config = {
       },
     }),
   },
-};
+}
 
-module.exports = mergeConfig(getDefaultConfig(__dirname), config);
+module.exports = mergeConfig(getDefaultConfig(__dirname), config)

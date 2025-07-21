@@ -1,10 +1,10 @@
-import React from 'react';
-import { Text, View } from 'react-native';
-import ActionSheet, { useSheetRef } from 'react-native-actions-sheet';
-import { Button } from '../components/button';
+import React from 'react'
+import { Text, View } from 'react-native'
+import ActionSheet, { useSheetRef } from 'react-native-actions-sheet'
+import { Button } from '../components/button'
 
 function AlwaysOpen() {
-  const ref = useSheetRef();
+  const ref = useSheetRef()
   return (
     <ActionSheet
       isModal={false}
@@ -40,12 +40,12 @@ function AlwaysOpen() {
         <Button
           title="Until you close me..."
           onPress={() => {
-            ref.current.hide();
+            ref.current.hide()
           }}
         />
       </View>
     </ActionSheet>
-  );
+  )
 }
 
-export default AlwaysOpen;
+export default AlwaysOpen

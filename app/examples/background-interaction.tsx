@@ -1,6 +1,6 @@
-import React from 'react';
-import { Text, View } from 'react-native';
-import ActionSheet from 'react-native-actions-sheet';
+import React from 'react'
+import { Text, View } from 'react-native'
+import ActionSheet from 'react-native-actions-sheet'
 
 function BackgroundInteraction() {
   return (
@@ -33,7 +33,7 @@ function BackgroundInteraction() {
         </Text>
       </View>
     </ActionSheet>
-  );
+  )
 }
 
-export default BackgroundInteraction;
+export default BackgroundInteraction

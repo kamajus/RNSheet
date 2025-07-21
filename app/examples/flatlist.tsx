@@ -1,10 +1,10 @@
-import React, { useCallback } from 'react';
-import { Text, View } from 'react-native';
-import ActionSheet, { FlatList, useSheetRef } from 'react-native-actions-sheet';
-import { Button } from '../components/button';
+import React, { useCallback } from 'react'
+import { Text, View } from 'react-native'
+import ActionSheet, { FlatList, useSheetRef } from 'react-native-actions-sheet'
+import { Button } from '../components/button'
 
 function FlatListSheet() {
-  const ref = useSheetRef();
+  const ref = useSheetRef()
   const vegetableNamesWithEmoji = [
     '🍅 Tomato',
     '🥕 Carrot',
@@ -71,7 +71,7 @@ function FlatListSheet() {
     '🍊 Orange',
     '🍎 Red Apple',
     '🍏 Green Apple',
-  ];
+  ]
 
   const renderItem = useCallback(
     ({ item }) => (
@@ -88,7 +88,7 @@ function FlatListSheet() {
       </Text>
     ),
     []
-  );
+  )
 
   return (
     <ActionSheet gestureEnabled snapPoints={[50, 100]}>
@@ -125,7 +125,7 @@ function FlatListSheet() {
         <Button
           title="Close"
           onPress={() => {
-            ref.current.hide();
+            ref.current.hide()
           }}
           style={{
             marginTop: 10,
@@ -134,7 +134,7 @@ function FlatListSheet() {
         />
       </View>
     </ActionSheet>
-  );
+  )
 }
 
-export default FlatListSheet;
+export default FlatListSheet

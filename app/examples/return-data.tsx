@@ -1,10 +1,10 @@
-import React from 'react';
-import { Text, View } from 'react-native';
-import ActionSheet, { useSheetRef } from 'react-native-actions-sheet';
-import { Button } from '../components/button';
+import React from 'react'
+import { Text, View } from 'react-native'
+import ActionSheet, { useSheetRef } from 'react-native-actions-sheet'
+import { Button } from '../components/button'
 
 function ReturnData() {
-  const ref = useSheetRef('return-data');
+  const ref = useSheetRef('return-data')
   return (
     <ActionSheet
       indicatorStyle={{
@@ -37,13 +37,13 @@ function ReturnData() {
         <Button
           title="Star on Github"
           onPress={() => {
-            ref.current.hide(true);
+            ref.current.hide(true)
           }}
         />
         <Button
           title="Cancel"
           onPress={() => {
-            ref.current.hide(false);
+            ref.current.hide(false)
           }}
           style={{
             backgroundColor: '#a9a9a9',
@@ -51,7 +51,7 @@ function ReturnData() {
         />
       </View>
     </ActionSheet>
-  );
+  )
 }
 
-export default ReturnData;
+export default ReturnData

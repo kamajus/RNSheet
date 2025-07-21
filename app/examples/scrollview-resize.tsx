@@ -1,7 +1,7 @@
-import React, { useCallback } from 'react';
-import { Text, View } from 'react-native';
-import ActionSheet, { ScrollView } from 'react-native-actions-sheet';
-import { Button } from '../components/button';
+import React, { useCallback } from 'react'
+import { Text, View } from 'react-native'
+import ActionSheet, { ScrollView } from 'react-native-actions-sheet'
+import { Button } from '../components/button'
 
 const vegetableNamesWithEmoji = [
   '🍅 Tomato',
@@ -51,12 +51,12 @@ const vegetableNamesWithEmoji = [
   '🍉 Watermelon',
   '🍌 Banana',
   '🍋 Lemon',
-];
+]
 
 function ResizeSheet() {
   const [vegetables, setVegetables] = React.useState([
     ...vegetableNamesWithEmoji.slice(0, 2),
-  ]);
+  ])
 
   const renderItem = useCallback(
     (item, index) => (
@@ -70,7 +70,7 @@ function ResizeSheet() {
       />
     ),
     []
-  );
+  )
 
   return (
     <ActionSheet
@@ -97,14 +97,14 @@ function ResizeSheet() {
               vegetableNamesWithEmoji[
                 Math.floor(Math.random() * vegetableNamesWithEmoji.length)
               ],
-            ]);
+            ])
           }}
         />
 
         <Button
           title="Remove vegetable"
           onPress={() => {
-            setVegetables([...vegetables.slice(0, vegetables.length - 1)]);
+            setVegetables([...vegetables.slice(0, vegetables.length - 1)])
           }}
         />
 
@@ -118,7 +118,7 @@ function ResizeSheet() {
         </ScrollView>
       </View>
     </ActionSheet>
-  );
+  )
 }
 
-export default ResizeSheet;
+export default ResizeSheet

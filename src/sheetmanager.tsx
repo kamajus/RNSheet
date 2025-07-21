@@ -1,11 +1,11 @@
-import { RefObject } from 'react';
-import { actionSheetEventManager } from './eventmanager';
-import { providerRegistryStack, sheetsRegistry } from './provider';
-import { ActionSheetRef, Sheets } from './types';
-let baseZindex = 999;
+import { RefObject } from 'react'
+import { actionSheetEventManager } from './eventmanager'
+import { providerRegistryStack, sheetsRegistry } from './provider'
+import { ActionSheetRef, Sheets } from './types'
+let baseZindex = 999
 // Array of all the ids of ActionSheets currently rendered in the app.
-const ids: string[] = [];
-const refs: { [name: string]: RefObject<ActionSheetRef> } = {};
+const ids: string[] = []
+const refs: { [name: string]: RefObject<ActionSheetRef> } = {}
 
 /**
  * Get rendered action sheets stack
@@ -16,8 +16,8 @@ export function getSheetStack() {
     return {
       id: id.split(':')[0],
       context: id.split(':')?.[1] || 'global',
-    };
-  });
+    }
+  })
 }
 
 /**
@@ -29,7 +29,7 @@ export function getSheetStack() {
 export function isRenderedOnTop(id: string, context?: string) {
   return context
     ? ids[ids.length - 1] === `${id}:${context}`
-    : ids[ids.length - 1].startsWith(id);
+    : ids[ids.length - 1].startsWith(id)
 }
 
 /**
@@ -40,7 +40,7 @@ export function isRenderedOnTop(id: string, context?: string) {
  * @param zIndex
  */
 export function setBaseZIndexForActionSheets(zIndex: number) {
-  baseZindex = zIndex;
+  baseZindex = zIndex
 }
 
 /**
@@ -51,16 +51,16 @@ export function setBaseZIndexForActionSheets(zIndex: number) {
  * @returns
  */
 export function getZIndexFromStack(id: string, context: string) {
-  const index = ids.indexOf(`${id}:${context}`);
+  const index = ids.indexOf(`${id}:${context}`)
   if (index > -1) {
-    return baseZindex + index + 1;
+    return baseZindex + index + 1
   }
-  return baseZindex;
+  return baseZindex
 }
 
 class _SheetManager {
   context(options?: { context?: string; id?: string }) {
-    if (!options) options = {};
+    if (!options) options = {}
     if (!options?.context) {
       // If no context is provided, use to current top most context
       // to render the sheet.
@@ -70,12 +70,12 @@ class _SheetManager {
           context.startsWith('$$-auto') &&
           !context.includes(options?.id as string)
         ) {
-          options.context = context;
-          break;
+          options.context = context
+          break
         }
       }
     }
-    return options.context;
+    return options.context
   }
 
   /**
@@ -90,44 +90,44 @@ class _SheetManager {
       /**
        * Any data to pass to the ActionSheet. Will be available from the component `props` or in `onBeforeShow` prop on the action sheet.
        */
-      payload?: Sheets[SheetId]['payload'];
+      payload?: Sheets[SheetId]['payload']
 
       /**
        * Recieve payload from the Sheet when it closes
        */
-      onClose?: (data: Sheets[SheetId]['returnValue'] | undefined) => void;
+      onClose?: (data: Sheets[SheetId]['returnValue'] | undefined) => void
 
       /**
        * Provide `context` of the `SheetProvider` where you want to show the action sheet.
        */
-      context?: string;
+      context?: string
     }
   ): Promise<Sheets[SheetId]['returnValue']> {
     return new Promise(resolve => {
       let currentContext = this.context({
         ...options,
         id: id,
-      });
+      })
       const handler = (data: any, context = 'global') => {
         if (
           context !== 'global' &&
           currentContext &&
           currentContext !== context
         )
-          return;
+          return
 
-        options?.onClose?.(data);
-        sub?.unsubscribe();
-        resolve(data);
-      };
-      var sub = actionSheetEventManager.subscribe(`onclose_${id}`, handler);
+        options?.onClose?.(data)
+        sub?.unsubscribe()
+        resolve(data)
+      }
+      var sub = actionSheetEventManager.subscribe(`onclose_${id}`, handler)
 
       // Check if the sheet is registered with any `SheetProviders`.
-      let isRegisteredWithSheetProvider = false;
+      let isRegisteredWithSheetProvider = false
       for (let ctx in sheetsRegistry) {
         for (let _id in sheetsRegistry[ctx]) {
           if (_id === id) {
-            isRegisteredWithSheetProvider = true;
+            isRegisteredWithSheetProvider = true
           }
         }
       }
@@ -135,8 +135,8 @@ class _SheetManager {
         isRegisteredWithSheetProvider ? `show_wrap_${id}` : `show_${id}`,
         options?.payload,
         currentContext || 'global'
-      );
-    });
+      )
+    })
   }
 
   /**
@@ -151,26 +151,26 @@ class _SheetManager {
       /**
        * Return some data to the caller on closing the Sheet.
        */
-      payload?: Sheets[SheetId]['returnValue'];
+      payload?: Sheets[SheetId]['returnValue']
       /**
        * Provide `context` of the `SheetProvider` to hide the action sheet.
        */
-      context?: string;
+      context?: string
     }
   ): Promise<Sheets[SheetId]['returnValue']> {
     let currentContext = this.context({
       ...options,
       id: id,
-    });
+    })
     return new Promise(resolve => {
-      let isRegisteredWithSheetProvider = false;
+      let isRegisteredWithSheetProvider = false
       // Check if the sheet is registered with any `SheetProviders`
       // and select the nearest context where sheet is registered.
 
       for (const _id of ids) {
         if (_id === `${id}:${currentContext}`) {
-          isRegisteredWithSheetProvider = true;
-          break;
+          isRegisteredWithSheetProvider = true
+          break
         }
       }
 
@@ -180,17 +180,17 @@ class _SheetManager {
           currentContext &&
           currentContext !== context
         )
-          return;
-        sub?.unsubscribe();
-        resolve(data);
-      };
-      var sub = actionSheetEventManager.subscribe(`onclose_${id}`, hideHandler);
+          return
+        sub?.unsubscribe()
+        resolve(data)
+      }
+      var sub = actionSheetEventManager.subscribe(`onclose_${id}`, hideHandler)
       actionSheetEventManager.publish(
         isRegisteredWithSheetProvider ? `hide_wrap_${id}` : `hide_${id}`,
         options?.payload,
         !isRegisteredWithSheetProvider ? 'global' : currentContext
-      );
-    });
+      )
+    })
   }
 
   /**
@@ -200,9 +200,9 @@ class _SheetManager {
    */
   hideAll<SheetId extends keyof Sheets>(id?: SheetId | (string & {})) {
     ids.forEach(_id => {
-      if (id && !_id.startsWith(id)) return;
-      actionSheetEventManager.publish(`hide_${_id.split(':')?.[0]}`);
-    });
+      if (id && !_id.startsWith(id)) return
+      actionSheetEventManager.publish(`hide_${_id.split(':')?.[0]}`)
+    })
   }
 
   registerRef = (
@@ -210,8 +210,8 @@ class _SheetManager {
     context: string,
     instance: RefObject<ActionSheetRef>
   ) => {
-    refs[`${id}:${context}`] = instance;
-  };
+    refs[`${id}:${context}`] = instance
+  }
 
   /**
    *
@@ -228,30 +228,30 @@ class _SheetManager {
       for (let ctx of providerRegistryStack.slice().reverse()) {
         for (let _id in sheetsRegistry[ctx]) {
           if (_id === id) {
-            context = ctx;
-            break;
+            context = ctx
+            break
           }
         }
       }
     }
-    return refs[`${id}:${context}`] as RefObject<ActionSheetRef<SheetId>>;
-  };
+    return refs[`${id}:${context}`] as RefObject<ActionSheetRef<SheetId>>
+  }
 
   add = (id: string, context: string) => {
     if (ids.indexOf(id) < 0) {
-      ids[ids.length] = `${id}:${context}`;
+      ids[ids.length] = `${id}:${context}`
     }
-  };
+  }
 
   remove = (id: string, context: string) => {
     if (ids.indexOf(`${id}:${context}`) > -1) {
-      ids.splice(ids.indexOf(`${id}:${context}`));
+      ids.splice(ids.indexOf(`${id}:${context}`))
     }
-  };
+  }
 }
 
 /**
  * SheetManager is used to imperitively show/hide any ActionSheet with a
  * unique id prop.
  */
-export const SheetManager = new _SheetManager();
+export const SheetManager = new _SheetManager()

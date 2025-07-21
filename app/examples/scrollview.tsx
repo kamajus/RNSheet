@@ -1,7 +1,7 @@
-import React, { useCallback } from 'react';
-import { Text, View } from 'react-native';
-import ActionSheet, { ScrollView } from 'react-native-actions-sheet';
-import { TextInput } from 'react-native-gesture-handler';
+import React, { useCallback } from 'react'
+import { Text, View } from 'react-native'
+import ActionSheet, { ScrollView } from 'react-native-actions-sheet'
+import { TextInput } from 'react-native-gesture-handler'
 
 function ScrollViewSheet() {
   const vegetableNamesWithEmoji = [
@@ -35,7 +35,7 @@ function ScrollViewSheet() {
     '🍇 Grapes',
     '🍉 Watermelon',
     '🍌 Banana',
-  ];
+  ]
 
   const renderItem = useCallback(
     (item, index) => (
@@ -52,7 +52,7 @@ function ScrollViewSheet() {
       />
     ),
     []
-  );
+  )
 
   return (
     <ActionSheet
@@ -93,7 +93,7 @@ function ScrollViewSheet() {
         </ScrollView>
       </View>
     </ActionSheet>
-  );
+  )
 }
 
-export default ScrollViewSheet;
+export default ScrollViewSheet

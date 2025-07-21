@@ -1,9 +1,9 @@
-import React from 'react';
-import '@root/app/sheets';
-import { SheetProvider } from 'react-native-actions-sheet';
-import MainScreen from '@root/app/examples';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import React from 'react'
+import '@root/app/sheets'
+import { SheetProvider } from 'react-native-actions-sheet'
+import MainScreen from '@root/app/examples'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 const App = () => {
   return (
@@ -20,7 +20,7 @@ const App = () => {
         </GestureHandlerRootView>
       </SafeAreaProvider>
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App

@@ -3,7 +3,6 @@ module.exports = {
   extends: ['@react-native-community', 'plugin:prettier/recommended'],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'prettier'],
-  ignorePatterns: ['dist/**/*'],
   overrides: [
     {
       files: ['*.ts', '*.tsx', '*.js', '*.jsx'],
@@ -14,7 +13,8 @@ module.exports = {
         'react/react-in-jsx-scope': 'off',
         'react-native/no-inline-styles': 'off',
         'prettier/prettier': 'error',
+        semi: [2, 'never'],
       },
     },
   ],
-};
+}

@@ -1,10 +1,10 @@
-import React from 'react';
-import { Text, View } from 'react-native';
-import ActionSheet from 'react-native-actions-sheet';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import React from 'react'
+import { Text, View } from 'react-native'
+import ActionSheet from 'react-native-actions-sheet'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 function DrawUnderStatusBar() {
-  const insets = useSafeAreaInsets();
+  const insets = useSafeAreaInsets()
   return (
     <ActionSheet
       indicatorStyle={{
@@ -34,7 +34,7 @@ function DrawUnderStatusBar() {
         </Text>
       </View>
     </ActionSheet>
-  );
+  )
 }
 
-export default DrawUnderStatusBar;
+export default DrawUnderStatusBar

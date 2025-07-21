@@ -3,11 +3,11 @@ import {
   FlashListProps,
   MasonryFlashList as SPMasonaryFlashList,
   MasonryFlashListProps,
-} from '@shopify/flash-list';
-import React from 'react';
-import { ScrollView as RNScrollView } from 'react-native';
-import { NativeViewGestureHandlerProps } from 'react-native-gesture-handler';
-import { ScrollView as SheetScrollView } from './ScrollView';
+} from '@shopify/flash-list'
+import React from 'react'
+import { ScrollView as RNScrollView } from 'react-native'
+import { NativeViewGestureHandlerProps } from 'react-native-gesture-handler'
+import { ScrollView as SheetScrollView } from './ScrollView'
 type Props<T = any> = FlashListProps<T> &
   Partial<NativeViewGestureHandlerProps> &
   React.RefAttributes<RNScrollView> & {
@@ -16,8 +16,8 @@ type Props<T = any> = FlashListProps<T> &
      *
      * Accepts a value between 0-1.
      */
-    refreshControlGestureArea?: number;
-  };
+    refreshControlGestureArea?: number
+  }
 
 function $FlashList<T = any>(
   props: Props<T>,
@@ -30,12 +30,12 @@ function $FlashList<T = any>(
       bounces={false}
       renderScrollComponent={SheetScrollView as any}
     />
-  );
+  )
 }
 
 export const FlashList = React.forwardRef(
   $FlashList
-) as unknown as typeof SPFlashList;
+) as unknown as typeof SPFlashList
 
 type MasonaryProps<T = any> = MasonryFlashListProps<T> &
   Partial<NativeViewGestureHandlerProps> &
@@ -45,8 +45,8 @@ type MasonaryProps<T = any> = MasonryFlashListProps<T> &
      *
      * Accepts a value between 0-1.
      */
-    refreshControlGestureArea?: number;
-  };
+    refreshControlGestureArea?: number
+  }
 
 function $MasonaryFlashList<T = any>(
   props: MasonaryProps<T>,
@@ -59,9 +59,9 @@ function $MasonaryFlashList<T = any>(
       bounces={false}
       renderScrollComponent={SheetScrollView as any}
     />
-  );
+  )
 }
 
 export const MasonaryFlashList = React.forwardRef(
   $MasonaryFlashList
-) as unknown as typeof SPMasonaryFlashList;
+) as unknown as typeof SPMasonaryFlashList

@@ -1,10 +1,10 @@
-import React from 'react';
-import { Text, View } from 'react-native';
-import ActionSheet, { useSheetRef } from 'react-native-actions-sheet';
-import { Button } from '../components/button';
+import React from 'react'
+import { Text, View } from 'react-native'
+import ActionSheet, { useSheetRef } from 'react-native-actions-sheet'
+import { Button } from '../components/button'
 
 const SnapMe = () => {
-  const ref = useSheetRef<'snap-me'>();
+  const ref = useSheetRef<'snap-me'>()
 
   return (
     <ActionSheet gestureEnabled snapPoints={[70, 100]}>
@@ -38,11 +38,11 @@ const SnapMe = () => {
           title="Snap with a tap!"
           onPress={() => {
             if (!ref.current) {
-              return;
+              return
             }
             ref.current.snapToIndex(
               ref.current?.currentSnapIndex() === 0 ? 1 : 0
-            );
+            )
           }}
           style={{
             width: 250,
@@ -50,7 +50,7 @@ const SnapMe = () => {
         />
       </View>
     </ActionSheet>
-  );
-};
+  )
+}
 
-export default SnapMe;
+export default SnapMe

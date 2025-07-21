@@ -1,6 +1,6 @@
-import React from 'react';
-import { Text } from 'react-native';
-import ActionSheet from 'react-native-actions-sheet';
+import React from 'react'
+import { Text } from 'react-native'
+import ActionSheet from 'react-native-actions-sheet'
 
 function Hello() {
   return (
@@ -21,7 +21,7 @@ function Hello() {
         Hello!
       </Text>
     </ActionSheet>
-  );
+  )
 }
 
-export default Hello;
+export default Hello

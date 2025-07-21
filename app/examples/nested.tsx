@@ -1,7 +1,7 @@
-import React from 'react';
-import { Text } from 'react-native';
-import ActionSheet, { SheetManager } from 'react-native-actions-sheet';
-import { Button } from '../components/button';
+import React from 'react'
+import { Text } from 'react-native'
+import ActionSheet, { SheetManager } from 'react-native-actions-sheet'
+import { Button } from '../components/button'
 
 function NestedSheet() {
   return (
@@ -27,11 +27,11 @@ function NestedSheet() {
       <Button
         title="Open a nested sheet"
         onPress={() => {
-          SheetManager.show('snap-me');
+          SheetManager.show('snap-me')
         }}
       />
     </ActionSheet>
-  );
+  )
 }
 
-export default NestedSheet;
+export default NestedSheet
