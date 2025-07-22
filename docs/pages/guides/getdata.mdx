@@ -5,11 +5,11 @@ React components are deeply coupled with their local state. However sometimes we
 Define the returnValue types in your Sheet definition:
 
 ```ts
-import {SheetDefinition, registerSheet} from 'react-native-actions-sheet';
+import {SheetDefinition, registerSheet} from 'rn-sheet';
 
 registerSheet("confirm-sheet", ExampleSheet);
 
-declare module 'react-native-actions-sheet' {
+declare module 'rn-sheet' {
   interface Sheets {
     'confirm-sheet': SheetDefinition<{
       payload: {

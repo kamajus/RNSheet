@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text } from 'react-native'
-import ActionSheet, { SheetManager } from 'react-native-actions-sheet'
+import ActionSheet, { SheetManager } from 'rn-sheet'
 import { Button } from '../components/button'
 
 function NestedSheet() {

@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { Text, View } from 'react-native'
-import ActionSheet from 'react-native-actions-sheet'
-import { FlashList } from 'react-native-actions-sheet/dist/src/views/FlashList'
+import ActionSheet from 'rn-sheet'
+import { FlashList } from 'rn-sheet/dist/src/views/FlashList'
 
 function FlashListSheet() {
   const vegetableNamesWithEmoji = [

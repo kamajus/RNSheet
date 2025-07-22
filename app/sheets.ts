@@ -1,8 +1,4 @@
-import {
-  RouteDefinition,
-  SheetDefinition,
-  registerSheet,
-} from 'react-native-actions-sheet'
+import { RouteDefinition, SheetDefinition, registerSheet } from 'rn-sheet'
 import Hello from './examples/hello'
 import Gestures from './examples/gestures'
 import SnapMe from './examples/snap-me'
@@ -44,7 +40,7 @@ registerSheet('return-data', ReturnData)
  * We extend some of the types here to give us great intellisense
  * across the app for all registered sheets.
  */
-declare module 'react-native-actions-sheet' {
+declare module 'rn-sheet' {
   export interface Sheets {
     /**
      * A simple sheet example

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { Text, View } from 'react-native'
-import ActionSheet, { ScrollView } from 'react-native-actions-sheet'
+import ActionSheet, { ScrollView } from 'rn-sheet'
 import { Button } from '../components/button'
 
 const vegetableNamesWithEmoji = [

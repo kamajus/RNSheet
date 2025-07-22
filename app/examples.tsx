@@ -8,7 +8,7 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native'
-import { SheetManager } from 'react-native-actions-sheet'
+import { SheetManager } from 'rn-sheet'
 
 const MainScreen = () => {
   const examples: {
@@ -70,9 +70,7 @@ const MainScreen = () => {
         SheetManager.show('return-data').then(result => {
           console.log('User will star on github?', result)
           if (result) {
-            Linking.openURL(
-              'https://github.com/ammarahm-ed/react-native-actions-sheet'
-            )
+            Linking.openURL('https://github.com/kamajus/RNSheet')
           }
         })
       },

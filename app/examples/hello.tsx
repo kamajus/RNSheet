@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text } from 'react-native'
-import ActionSheet from 'react-native-actions-sheet'
+import ActionSheet from 'rn-sheet'
 
 function Hello() {
   return (

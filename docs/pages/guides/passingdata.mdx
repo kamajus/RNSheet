@@ -7,11 +7,11 @@ ActionSheet for React Native provides a very easy way to do this by passing the 
 Define the Sheet payload data when registering your Sheet.
 
 ```ts
-import {SheetDefinition, registerSheet} from 'react-native-actions-sheet';
+import {SheetDefinition, registerSheet} from 'rn-sheet';
 
 registerSheet("example-sheet", ExampleSheet);
 
-declare module 'react-native-actions-sheet' {
+declare module 'rn-sheet' {
   interface Sheets {
     'example-sheet': SheetDefinition<{
       payload: {

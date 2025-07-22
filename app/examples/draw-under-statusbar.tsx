@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-import ActionSheet from 'react-native-actions-sheet'
+import ActionSheet from 'rn-sheet'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 function DrawUnderStatusBar() {

@@ -17,9 +17,9 @@ npm install react-native-gesture-handlers
 Registering sheets works the same way, however to get better type intellisense across your code base, it is recommended that you extend some internal interfaces and define your sheets as follows:
 
 ```ts
-import {SheetDefinition} from 'react-native-actions-sheet';
+import {SheetDefinition} from 'rn-sheet';
 
-declare module 'react-native-actions-sheet' {
+declare module 'rn-sheet' {
   interface Sheets {
     'example-sheet': SheetDefinition<{
       payload: {
@@ -76,7 +76,7 @@ Now it's not needed anymore. You can however define the exact sheet id directly 
 
 ### Scrolling
 
-See [Scrolling guide](./scrolling.mdx) to learn how to migrate away from `useScrollHandlers` and use dedicated scrolling views provided by `react-native-actions-sheet`.
+See [Scrolling guide](./scrolling.mdx) to learn how to migrate away from `useScrollHandlers` and use dedicated scrolling views provided by `rn-sheet`.
 
 ### Safe Area Insets
 
@@ -117,7 +117,7 @@ const actionSheetRef = useRef<ActionSheet>(null);
 After:
 
 ```tsx
-import { ActionSheetRef } from 'react-native-actions-sheet';
+import { ActionSheetRef } from 'rn-sheet';
 const ExampleSheet = () => {
 const actionSheetRef = useRef<ActionSheetRef>(null);
 ...

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-import ActionSheet, { useSheetRef } from 'react-native-actions-sheet'
+import ActionSheet, { useSheetRef } from 'rn-sheet'
 import { Button } from '../components/button'
 
 const SnapMe = () => {

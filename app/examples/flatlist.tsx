@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { Text, View } from 'react-native'
-import ActionSheet, { FlatList, useSheetRef } from 'react-native-actions-sheet'
+import ActionSheet, { FlatList, useSheetRef } from 'rn-sheet'
 import { Button } from '../components/button'
 
 function FlatListSheet() {

@@ -12,7 +12,7 @@ import ActionSheet, {
   RouteScreenProps,
   useSheetRouter,
   useSheetRouteParams,
-} from 'react-native-actions-sheet';
+} from 'rn-sheet';
 
 const RouteA = ({router}: RouteScreenProps<"sheet-with-router", "route-a">) => {
   return (
@@ -70,12 +70,12 @@ export default SheetWithRouter;
 Finally register the sheet along with routes in `sheets.tsx` file.
 
 ```ts
-import {registerSheet} from 'react-native-actions-sheet';
+import {registerSheet} from 'rn-sheet';
 import {SheetWithRouter} from './sheet-with-router';
 
 registerSheet('sheet-with-router', Sheet);
 
-declare module 'react-native-actions-sheet' {
+declare module 'rn-sheet' {
   interface Sheets {
     'sheet-with-router': SheetDefinition<{
       routes: {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-import ActionSheet, { useSheetRef } from 'react-native-actions-sheet'
+import ActionSheet, { useSheetRef } from 'rn-sheet'
 import { Button } from '../components/button'
 
 function ReturnData() {
@@ -31,8 +31,7 @@ function ReturnData() {
             marginBottom: 10,
           }}
         >
-          Are you sure you want to star react-native-actions-sheet repo on
-          Github?
+          Are you sure you want to star rn-sheet Github?
         </Text>
         <Button
           title="Star on Github"

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text } from 'react-native'
-import ActionSheet, { useSheetPayload } from 'react-native-actions-sheet'
+import ActionSheet, { useSheetPayload } from 'rn-sheet'
 
 function Payload() {
   const payload = useSheetPayload('payload')

@@ -4,7 +4,7 @@ import ActionSheet, {
   Route,
   useSheetRouteParams,
   useSheetRouter,
-} from 'react-native-actions-sheet'
+} from 'rn-sheet'
 import { Button } from '../components/button'
 
 const RouteA = () => {

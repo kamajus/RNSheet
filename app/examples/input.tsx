@@ -1,6 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
-import ActionSheet from 'react-native-actions-sheet'
+import ActionSheet from 'rn-sheet'
 import { TextInput } from 'react-native-gesture-handler'
 
 function Input() {
