@@ -1478,6 +1478,9 @@ export default forwardRef<ActionSheetRef, ActionSheetProps>(
             <GestureHandlerRoot
               isModal={isModal}
               style={styles.parentContainer}
+              pointerEvents={
+                props?.backgroundInteractionEnabled ? 'box-none' : 'auto'
+              }
             >
               <PanGestureRefContext.Provider value={context}>
                 <DraggableNodesContext.Provider value={draggableNodesContext}>
@@ -1664,7 +1667,10 @@ export default forwardRef<ActionSheetRef, ActionSheetProps>(
 
 const GestureHandlerRoot = (props: any) => {
   return props.isModal ? (
-    <GestureHandlerRootView style={props.style}>
+    <GestureHandlerRootView
+      style={props.style}
+      pointerEvents={props.pointerEvents}
+    >
       {props.children}
     </GestureHandlerRootView>
   ) : (
