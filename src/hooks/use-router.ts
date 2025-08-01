@@ -6,7 +6,7 @@ export type RouteDefinition<T extends {} = {}> = T
 
 export type Route<
   Key extends keyof Sheets = never,
-  K extends keyof Sheets[Key]['routes'] = never
+  K extends keyof Sheets[Key]['routes'] = never,
 > = {
   /**
    * Name of the route.
@@ -229,7 +229,7 @@ export const RouterParamsContext = createContext<any>(undefined)
  */
 export function useSheetRouteParams<
   SheetId extends keyof Sheets = never,
-  RouteKey extends keyof Sheets[SheetId]['routes'] = never
+  RouteKey extends keyof Sheets[SheetId]['routes'] = never,
 >(
   //@ts-ignore
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -244,7 +244,7 @@ export function useSheetRouteParams<
 
 export type RouteScreenProps<
   SheetId extends keyof Sheets = never,
-  RouteKey extends keyof Sheets[SheetId]['routes'] = never
+  RouteKey extends keyof Sheets[SheetId]['routes'] = never,
 > = {
   router: Router<SheetId>
   params: Sheets[SheetId]['routes'][RouteKey]

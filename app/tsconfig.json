@@ -5,9 +5,7 @@
     "esModuleInterop": true,
     "paths": {
       "rn-sheet": ["../"],
-      "rn-sheet/dist/src/views/FlashList": [
-        "../dist/src/views/FlashList"
-      ],
+      "rn-sheet/dist/src/views/FlashList": ["../dist/src/views/FlashList"],
       "react-native-safe-area-context": [
         "../example/node_modules/react-native-safe-area-context"
       ]

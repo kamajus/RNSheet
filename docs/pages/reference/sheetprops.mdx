@@ -1,4 +1,4 @@
-import { Callout } from "nextra-theme-docs";
+import { Callout } from 'nextra-theme-docs'
 
 # SheetProps
 
@@ -13,14 +13,14 @@ Id of the current action sheet.
 Any data that has been passed to the action sheet when calling `SheetManager.show` can be accessed from here.
 
 ```tsx
-function ExampleSheet(props: SheetProps<"example-sheet">) {
+function ExampleSheet(props: SheetProps<'example-sheet'>) {
   return (
     <ActionSheet id={props.sheetId}>
       <View>
         <Text>{props.payload?.title}</Text>
       </View>
     </ActionSheet>
-  );
+  )
 }
 ```
 

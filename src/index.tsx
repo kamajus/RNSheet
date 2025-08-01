@@ -1365,8 +1365,8 @@ export default forwardRef<ActionSheetRef, ActionSheetProps>(
                 zIndex: zIndex
                   ? zIndex
                   : sheetId
-                  ? getZIndexFromStack(sheetId, currentContext)
-                  : 999,
+                    ? getZIndexFromStack(sheetId, currentContext)
+                    : 999,
                 width: '100%',
                 height: '100%',
               },

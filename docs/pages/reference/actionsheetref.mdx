@@ -3,9 +3,9 @@
 A reference for all the methods that can be invoked on the action sheet ref.
 
 ```tsx
-import {ActionSheetRef} from 'rn-sheet';
+import { ActionSheetRef } from 'rn-sheet'
 
-const ref = useRef<ActionSheetRef>(null);
+const ref = useRef<ActionSheetRef>(null)
 ```
 
 ## `show`
@@ -13,7 +13,7 @@ const ref = useRef<ActionSheetRef>(null);
 Show the action sheet.
 
 ```ts
-ref.current?.show();
+ref.current?.show()
 ```
 
 ## `hide`
@@ -21,7 +21,7 @@ ref.current?.show();
 Hide the action sheet.
 
 ```ts
-ref.current?.hide();
+ref.current?.hide()
 ```
 
 Parameters:
@@ -35,7 +35,7 @@ The hide function takes an optional `data` parameter which can be used to return
 | any  | true     |
 
 ```ts
-ref.current?.hide({confirmed: true});
+ref.current?.hide({ confirmed: true })
 ```
 
 ## `snapToOffset`
@@ -53,7 +53,7 @@ A value between 0 to 100.
 | number | true     |
 
 ```ts
-ref.current?.snapToOffset(20);
+ref.current?.snapToOffset(20)
 ```
 
 ## `snapToIndex`
@@ -71,7 +71,7 @@ Snap to the snap point at given index.
 | number | true     |
 
 ```ts
-ref.current?.snapToIndex(1);
+ref.current?.snapToIndex(1)
 ```
 
 ## `isOpen`
@@ -87,5 +87,5 @@ Check if the action sheet has gestures enabled or disabled.
 Disable or enable sheet keyboard handler.
 
 ```ts
-ref.current?.keyboardHandler(false);
+ref.current?.keyboardHandler(false)
 ```

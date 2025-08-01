@@ -1,4 +1,4 @@
-import {Callout} from 'nextra-theme-docs';
+import { Callout } from 'nextra-theme-docs'
 
 # useScrollHandlers
 
@@ -15,21 +15,22 @@ A unique id for the `ScrollView` or `FlatList`. This id has to be unique per act
 | [DraggableNodeOptions](./draggablenodeoptions) | false    |
 
 ```tsx
-import {ScrollView} from 'react-native';
-import ActionSheet, {useScrollHandlers} from 'rn-sheet';
-import {NativeViewGestureHandler} from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native'
+import ActionSheet, { useScrollHandlers } from 'rn-sheet'
+import { NativeViewGestureHandler } from 'react-native-gesture-handler'
 
 const ExampleSheet = () => {
-  const handlers = useScrollHandlers();
+  const handlers = useScrollHandlers()
   return (
     <ActionSheet>
       <NativeViewGestureHandler
-        simultaneousHandlers={handlers.simultaneousHandlers}>
+        simultaneousHandlers={handlers.simultaneousHandlers}
+      >
         <ScrollView {...handlers}></ScrollView>
       </NativeViewGestureHandler>
     </ActionSheet>
-  );
-};
+  )
+}
 ```
 
 <Callout>

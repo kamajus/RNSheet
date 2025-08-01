@@ -5,7 +5,7 @@
 Import `ActionSheet`.
 
 ```tsx
-import ActionSheet from 'rn-sheet';
+import ActionSheet from 'rn-sheet'
 ```
 
 Create your ActionSheet component and export it.
@@ -18,36 +18,36 @@ function ExampleSheet() {
         <Text>Hello World</Text>
       </View>
     </ActionSheet>
-  );
+  )
 }
 
-export default ExampleSheet;
+export default ExampleSheet
 ```
 
 Create a `sheets.tsx` file and import your sheet then register it.
 
 ```ts
-import {registerSheet} from 'rn-sheet';
-import ExampleSheet from 'example-sheet.tsx';
+import { registerSheet } from 'rn-sheet'
+import ExampleSheet from 'example-sheet.tsx'
 
-registerSheet('example-sheet', ExampleSheet);
+registerSheet('example-sheet', ExampleSheet)
 
 // We extend some of the types here to give us great intellisense
 // across the app for all registered sheets.
 declare module 'rn-sheet' {
   interface Sheets {
-    'example-sheet': SheetDefinition;
+    'example-sheet': SheetDefinition
   }
 }
 
-export {};
+export {}
 ```
 
 In `App.js` import `sheets.tsx` and wrap your app in `SheetProvider`.
 
 ```tsx
-import {SheetProvider} from 'rn-sheet';
-import 'sheets.tsx';
+import { SheetProvider } from 'rn-sheet'
+import 'sheets.tsx'
 
 function App() {
   return (
@@ -56,18 +56,18 @@ function App() {
         // your app components
       }
     </SheetProvider>
-  );
+  )
 }
 ```
 
 Open the ActionSheet from anywhere in the app.
 
 ```jsx
-SheetManager.show('example-sheet');
+SheetManager.show('example-sheet')
 ```
 
 Hide the ActionSheet
 
 ```jsx
-SheetManager.hide('example-sheet');
+SheetManager.hide('example-sheet')
 ```

@@ -1,6 +1,0 @@
-dist/
-.next/
-.expo/
-node_modules/
-*.d.ts
-coverage/

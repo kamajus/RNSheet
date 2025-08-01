@@ -1,4 +1,4 @@
-import { Callout } from "nextra-theme-docs";
+import { Callout } from 'nextra-theme-docs'
 
 # SheetProvider props
 
@@ -12,15 +12,15 @@ When you want to show action sheet from a modal, you must create a new `SheetPro
 
 ```ts
 // Normal action sheet that is used with the global sheet provider.
-registerSheet("example-sheet", ExampleSheet);
+registerSheet('example-sheet', ExampleSheet)
 // You can also register the action sheet with multiple sheet providers.
 registerSheet(
-  "example-sheet-nested",
+  'example-sheet-nested',
   ExampleSheet,
-  "global",
-  "local",
-  "local-local"
-);
+  'global',
+  'local',
+  'local-local'
+)
 ```
 
 <Callout>

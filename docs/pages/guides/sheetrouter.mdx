@@ -12,36 +12,38 @@ import ActionSheet, {
   RouteScreenProps,
   useSheetRouter,
   useSheetRouteParams,
-} from 'rn-sheet';
+} from 'rn-sheet'
 
-const RouteA = ({router}: RouteScreenProps<"sheet-with-router", "route-a">) => {
+const RouteA = ({
+  router,
+}: RouteScreenProps<'sheet-with-router', 'route-a'>) => {
   return (
     <View>
       <Button
         title="Go to Route B"
         onPress={() => {
-          router.navigate('route-b', {data: 'test'});
+          router.navigate('route-b', { data: 'test' })
         }}
       />
     </View>
-  );
-};
+  )
+}
 
 const RouteB = () => {
-  const router = useSheetRouter("sheet-with-router");
-  const params = useSheetRouteParams("sheet-with-router", "route-b");
+  const router = useSheetRouter('sheet-with-router')
+  const params = useSheetRouteParams('sheet-with-router', 'route-b')
 
   return (
     <View>
       <Button
         title="Go Back to Route A"
         onPress={() => {
-          router.goBack();
+          router.goBack()
         }}
       />
     </View>
-  );
-};
+  )
+}
 
 const routes: Route[] = [
   {
@@ -52,7 +54,7 @@ const routes: Route[] = [
     name: 'route-b',
     component: RouteB,
   },
-];
+]
 
 function SheetWithRouter(props: SheetProps) {
   return (
@@ -61,31 +63,31 @@ function SheetWithRouter(props: SheetProps) {
       routes={routes}
       initialRoute="route-a"
     />
-  );
+  )
 }
 
-export default SheetWithRouter;
+export default SheetWithRouter
 ```
 
 Finally register the sheet along with routes in `sheets.tsx` file.
 
 ```ts
-import {registerSheet} from 'rn-sheet';
-import {SheetWithRouter} from './sheet-with-router';
+import { registerSheet } from 'rn-sheet'
+import { SheetWithRouter } from './sheet-with-router'
 
-registerSheet('sheet-with-router', Sheet);
+registerSheet('sheet-with-router', Sheet)
 
 declare module 'rn-sheet' {
   interface Sheets {
     'sheet-with-router': SheetDefinition<{
       routes: {
-        'route-a': RouteDefinition;
+        'route-a': RouteDefinition
         // Route B with params.
         'route-b': RouteDefinition<{
           data: string
-        }>;
-      };
-    }>;
+        }>
+      }
+    }>
   }
 }
 ```

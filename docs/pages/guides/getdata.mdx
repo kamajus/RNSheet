@@ -5,9 +5,9 @@ React components are deeply coupled with their local state. However sometimes we
 Define the returnValue types in your Sheet definition:
 
 ```ts
-import {SheetDefinition, registerSheet} from 'rn-sheet';
+import { SheetDefinition, registerSheet } from 'rn-sheet'
 
-registerSheet("confirm-sheet", ExampleSheet);
+registerSheet('confirm-sheet', ExampleSheet)
 
 declare module 'rn-sheet' {
   interface Sheets {
@@ -15,8 +15,8 @@ declare module 'rn-sheet' {
       payload: {
         message: string
       }
-      returnValue: boolean;
-    }>;
+      returnValue: boolean
+    }>
   }
 }
 ```
@@ -29,9 +29,9 @@ async function openExternalLink(link: string) {
     payload: {
       message: `Do you want to open ${link} in your phone browser?`,
     },
-  });
+  })
   if (canOpen) {
-    Linking.openUrl(link);
+    Linking.openUrl(link)
   }
 }
 ```
@@ -39,14 +39,15 @@ async function openExternalLink(link: string) {
 And in our `ConfirmSheet` component.
 
 ```tsx
-function ConfirmSheet(props: SheetProps<"confirm-sheet">) {
+function ConfirmSheet(props: SheetProps<'confirm-sheet'>) {
   return (
     <ActionSheet id={props.sheetId}>
       <Text
         style={{
           marginBottom: 10,
           color: 'black',
-        }}>
+        }}
+      >
         {props.payload?.message}
       </Text>
       <Button
@@ -54,7 +55,7 @@ function ConfirmSheet(props: SheetProps<"confirm-sheet">) {
         onPress={() => {
           SheetManager.hide(props.sheetId, {
             payload: false,
-          });
+          })
         }}
       />
       <Button
@@ -62,11 +63,11 @@ function ConfirmSheet(props: SheetProps<"confirm-sheet">) {
         onPress={() => {
           SheetManager.hide(props.sheetId, {
             payload: true,
-          });
+          })
         }}
       />
     </ActionSheet>
-  );
+  )
 }
 ```
 
@@ -75,7 +76,7 @@ function ConfirmSheet(props: SheetProps<"confirm-sheet">) {
 You can also chain showing ActionSheets one after the other using `await`. Each promise will resolve when the ActionSheet has closed.
 
 ```ts
-let result = await SheetManager.show('sheet-a');
-if (result) return await SheetManager.show('sheet-b');
+let result = await SheetManager.show('sheet-a')
+if (result) return await SheetManager.show('sheet-b')
 /// and so on.
 ```

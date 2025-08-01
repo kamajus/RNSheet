@@ -30,14 +30,14 @@ All the routes that this sheet will have.
 declare module 'rn-sheet' {
   interface Sheets {
     'example-sheet': SheetDefinition<{
-      payload: string;
-      returnValue: boolean;
+      payload: string
+      returnValue: boolean
       routes: {
         'route-1': RouteDefinition<{
-          param: 'param';
-        }>;
-      };
-    }>;
+          param: 'param'
+        }>
+      }
+    }>
   }
 }
 ```

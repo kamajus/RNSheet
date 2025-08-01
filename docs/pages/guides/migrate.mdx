@@ -17,17 +17,17 @@ npm install react-native-gesture-handlers
 Registering sheets works the same way, however to get better type intellisense across your code base, it is recommended that you extend some internal interfaces and define your sheets as follows:
 
 ```ts
-import {SheetDefinition} from 'rn-sheet';
+import { SheetDefinition } from 'rn-sheet'
 
 declare module 'rn-sheet' {
   interface Sheets {
     'example-sheet': SheetDefinition<{
       payload: {
-        userId: string;
-      };
-      returnValue: boolean;
-    }>;
-    'awesome-sheet': SheetDefinition;
+        userId: string
+      }
+      returnValue: boolean
+    }>
+    'awesome-sheet': SheetDefinition
   }
 }
 ```
@@ -111,7 +111,7 @@ We now have a `ActionSheetRef` type that should be used in `useRef` hooks:
 Before:
 
 ```tsx
-const actionSheetRef = useRef<ActionSheet>(null);
+const actionSheetRef = useRef<ActionSheet>(null)
 ```
 
 After:
@@ -130,29 +130,29 @@ const actionSheetRef = useRef<ActionSheetRef>(null);
 From:
 
 ```ts
-SheetManager.show('sheet-id', {data: 'hello world'});
+SheetManager.show('sheet-id', { data: 'hello world' })
 ```
 
 to
 
 ```ts
 SheetManager.show('sheet-id', {
-  payload: {data: 'hello world'},
-});
+  payload: { data: 'hello world' },
+})
 ```
 
 And `hide` has changed similarly:
 
 ```ts
-SheetManager.hide('sheet-id', {data: 'hello world'});
+SheetManager.hide('sheet-id', { data: 'hello world' })
 ```
 
 to
 
 ```ts
 SheetManager.hide('sheet-id', {
-  payload: {data: 'hello world'},
-});
+  payload: { data: 'hello world' },
+})
 ```
 
 ### `registerSheet` changes
@@ -160,13 +160,13 @@ SheetManager.hide('sheet-id', {
 The `registerSheet` function now takes multiple contexts so a sheet with same id can be opened in multiple contexts.
 
 ```ts
-registerSheet('sheet-id', ExampleSheet, 'context-a', 'context-b');
+registerSheet('sheet-id', ExampleSheet, 'context-a', 'context-b')
 ```
 
 ```ts
 SheetManager.show('sheet-id', {
   context: 'context-b',
-});
+})
 ```
 
 ### `ScrollView` behaviour changes
@@ -176,31 +176,31 @@ SheetManager.show('sheet-id', {
 From:
 
 ```tsx
-const actionSheetRef = useRef<ActionSheet>(null);
+const actionSheetRef = useRef<ActionSheet>(null)
 
 return (
   <ActionSheet>
     <ScrollView
       nestedScrollingEnabled={true}
       onMomentumScrollEnd={() => {
-        actionSheetRef.current?.handleChildScrollEnd();
+        actionSheetRef.current?.handleChildScrollEnd()
       }}
     />
   </ActionSheet>
-);
+)
 ```
 
 To:
 
 ```tsx
-const actionSheetRef = useRef<ActionSheet>(null);
-const scrollHandlers = useScrollHandlers('scroll-1', actionSheetRef);
+const actionSheetRef = useRef<ActionSheet>(null)
+const scrollHandlers = useScrollHandlers('scroll-1', actionSheetRef)
 
 return (
   <ActionSheet>
     <ScrollView {...scrollHandlers} />;
   </ActionSheet>
-);
+)
 ```
 
 You can now use normal react native `ScrollView` & `FlatList` components instead of the ones from `react-native-gesture-handler`.

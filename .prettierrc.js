@@ -7,9 +7,4 @@ module.exports = {
   useTabs: false,
   bracketSpacing: true,
   arrowParens: 'avoid',
-  paddingLineBetweenStatements: [
-    { blankLine: 'never', prev: 'import', next: 'import' },
-    { blankLine: 'always', prev: 'import', next: '*' },
-    { blankLine: 'never', prev: '*', next: 'multiline-block-like' },
-  ],
-};
+}

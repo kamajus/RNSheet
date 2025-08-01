@@ -162,8 +162,8 @@ const RenderSheet = ({ id, context }: { id: string; context: string }) => {
   const Sheet = context.startsWith('$$-auto-')
     ? sheetsRegistry?.global?.[id]
     : sheetsRegistry[context]
-    ? sheetsRegistry[context]?.[id]
-    : undefined
+      ? sheetsRegistry[context]?.[id]
+      : undefined
 
   const onShow = React.useCallback(
     (data: any, ctx = 'global') => {

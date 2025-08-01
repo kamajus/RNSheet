@@ -7,38 +7,38 @@ ActionSheet for React Native provides a very easy way to do this by passing the 
 Define the Sheet payload data when registering your Sheet.
 
 ```ts
-import {SheetDefinition, registerSheet} from 'rn-sheet';
+import { SheetDefinition, registerSheet } from 'rn-sheet'
 
-registerSheet("example-sheet", ExampleSheet);
+registerSheet('example-sheet', ExampleSheet)
 
 declare module 'rn-sheet' {
   interface Sheets {
     'example-sheet': SheetDefinition<{
       payload: {
-        value: string;
-      };
-    }>;
+        value: string
+      }
+    }>
   }
 }
 ```
 
 ```ts
-SheetManager.show("example-sheet", {
-  payload: { value: "Hello World" },
-});
+SheetManager.show('example-sheet', {
+  payload: { value: 'Hello World' },
+})
 ```
 
 And then in your `ExampleSheet` component.
 
 ```tsx
-function ExampleSheet(props: SheetProps<"example-sheet">) {
+function ExampleSheet(props: SheetProps<'example-sheet'>) {
   return (
     <ActionSheet id={props.sheetId}>
       <View>
         <Text>{props.payload?.value}</Text>
       </View>
     </ActionSheet>
-  );
+  )
 }
 ```
 
