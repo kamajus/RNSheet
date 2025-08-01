@@ -101,8 +101,8 @@ export function useScrollHandlers<T>(options?: DraggableNodeOptions) {
   const [_render, setRender] = useState(false)
 
   const { nodeRef, gestureContext, offset, layout } = useDraggable<T>(options)
-  const timer = useRef<NodeJS.Timeout>()
-  const subscription = useRef<EventHandlerSubscription>()
+  const timer = useRef<NodeJS.Timeout | null>(null)
+  const subscription = useRef<EventHandlerSubscription | null>(null)
   const onMeasure = useCallback(
     (x: number, y: number, w: number, h: number, px: number, py: number) => {
       layout.current = {

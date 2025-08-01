@@ -14,6 +14,7 @@ import NestedSheet from './examples/nested'
 import RouterSheet from './examples/router'
 import DrawUnderStatusBar from './examples/draw-under-statusbar'
 import ReturnData from './examples/return-data'
+import CommentSection from './examples/comment-section'
 
 // Register your Sheet component.
 /**
@@ -35,6 +36,7 @@ registerSheet('nested-sheets', NestedSheet)
 registerSheet('sheet-router', RouterSheet)
 registerSheet('draw-under-statusbar', DrawUnderStatusBar)
 registerSheet('return-data', ReturnData)
+registerSheet('comment-section', CommentSection)
 
 /**
  * We extend some of the types here to give us great intellisense
@@ -70,6 +72,7 @@ declare module 'rn-sheet' {
     }>
     'nested-sheets': SheetDefinition
     'draw-under-statusbar': SheetDefinition
+    'comment-section': SheetDefinition
     'return-data': SheetDefinition<{
       returnValue: boolean
     }>

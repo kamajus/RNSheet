@@ -123,6 +123,12 @@ const MainScreen = () => {
         SheetManager.show('sheet-router')
       },
     },
+    {
+      title: 'Comment Section',
+      onOpen: () => {
+        SheetManager.show('comment-section')
+      },
+    },
   ]
 
   // Examples left to add
