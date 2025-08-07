@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
-    "jsx": "react-native",
-    "esModuleInterop": true,
+    "strict": true,
     "paths": {
       "rn-sheet": ["../"],
       "rn-sheet/dist/src/views/FlashList": ["../dist/src/views/FlashList"],
